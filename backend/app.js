@@ -10,7 +10,7 @@ const studentRoutes = require("./routes/students");
 // *********** Connect to Mongo  ***********
 console.log('Attempting to connect to mongoose');
 
-mongoose.connect('mongodb://localhost:27017/host')
+mongoose.connect('mongodb://localhost:27017/host', { useNewUrlParser: true })
   .then(() => {
     console.log('Connected to Mongo database!');
   })
