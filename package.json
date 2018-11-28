@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm-run-all --parallel start:server start:client",
     "start:server": "nodemon ./backend/server.js",
-    "start:client": "cd ./gamer-lobby & ng serve --open)",
+    "start:client": "cd ./gamer-lobby & ng serve --open",
     "setup": "npm-run-all --parallel setup:server setup:client",
     "setup:server": "cd ./gamer-lobby & npm i",
     "setup:client": "cd ./backend & npm i",
