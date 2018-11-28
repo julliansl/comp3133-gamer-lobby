@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./backend/server.js && (cd ./gamer-lobby/ && ng serve --open)",
-    "setup": "npm i @angular/cli -g && (cd ./backend && npm i) && (cd ../gamer-lobby/ && npm i)"
+    "start": "npm-run-all --parallel start:server start:client",
+    "start:server": "nodemon ./backend/server.js",
+    "start:client": "cd ./gamer-lobby && ng serve --open)",
+    "setup": "npm-run-all --parallel setup:server setup:client",
+    "setup:server": "cd ./gamer-lobby && npm i",
+    "setup:client": "cd ./backend && npm i",
+    "setup:env": "npm i && npm i @angular/cli -g && npm i nodemon -g && npm run setup"
   },
   "repository": {
     "type": "git",
@@ -16,5 +21,8 @@
   "bugs": {
     "url": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1/issues"
   },
-  "homepage": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1#README"
+  "homepage": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1#README",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }
