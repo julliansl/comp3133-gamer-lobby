@@ -1,0 +1,20 @@
+{
+  "name": "comp3123_assignment1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./backend/server.js && (cd ./gamer-lobby/ && ng serve --open)",
+    "setup": "npm i @angular/cli -g && (cd ./backend && npm i) && (cd ../gamer-lobby/ && npm i)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1/issues"
+  },
+  "homepage": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1#README"
+}
