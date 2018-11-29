@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Level</th>
+    <th>Mode</th>
+    <th>Time</th>
+    <th>Game</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor ="let user of users" (click)="onSelect(user)">
+    <td>{{user.username}}</td>
+    <td>{{user.level}}</td>
+    <td>{{user.mode}}</td>
+    <td>{{user.time}}</td>
+    <td>{{user.game}}</td>
+    <td>{{user.status}}</td>
+  </tr>
+</table>
+
