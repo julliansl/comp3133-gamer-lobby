@@ -1,45 +1,45 @@
 const express = require("express");
-const userModel = require('../models/user');
+const User = require('../models/user');
 
 const router = express.Router();
 
-
 router.get('', (req, res, next) => {
-
-  console.log('GET: Student lists');
-
-  // Add Mongoose query to find all return list of students and return
-
+  res.contentType("application/json");
+  console.log('GET: Users Lists');
+  User.find({}, (err, users) => {
+    if (err) 
+      throw err;
+    res.send(JSON.stringify(users));
+  });
 });
 
-router.get('/:id', (req, res, next) => {
-
-  console.log('GET: Student by id:' + req.params.id);
-
-  // Implement Mongoose query to find Student by Id return list of students and return
-
+router.get('/:username', (req, res, next) => {
+  res.contentType("application/json");
+  console.log('GET: User by username:' + req.params.username);
+  User.findOne({username: req.params.username}, (err, user) => {
+    if (err) 
+      throw err;
+    res.send(JSON.stringify(user));
+  });
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:username', (req, res, next) => {
+  res.contentType("application/json");
+  console.log('UPDATE: User by : ' + req.params.username);
 
-  console.log('UPDATE: Student by id: ' + req.params.id);
-
-  // Implement Mongoose update Student by ID
-
-})
-router.post('/:id', (req, res, next) => {
-
-  console.log('UPDATE: Student by id: ' + req.params.id);
-
-  // Implement Mongoose update Student by ID
-
+  // Implement Mongoose update User by username
 })
 
-router.delete('/:id', (req, res, next) => {
+router.post('/:username', (req, res, next) => {
+  res.contentType("application/json");
+  console.log('UPDATE: User by username: ' + req.params.username);
+  User(req.params)
+})
 
-  console.log('UPDATE: Student by id: ' + req.params.id);
-
-  // Implement Mongoose delete one Student by ID
+router.delete('/:username', (req, res, next) => {
+  res.contentType("application/json");
+  console.log('UPDATE: User by username: ' + req.params.username);
+  // Implement Mongoose delete one User by username
 
 });
 
