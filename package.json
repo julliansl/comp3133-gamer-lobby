@@ -23,6 +23,8 @@
   },
   "homepage": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1#README",
   "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.3.14",
     "npm-run-all": "^4.1.5"
   }
 }
