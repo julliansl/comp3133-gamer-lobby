@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // *********** Include the Api routes ***********
-const studentRoutes = require("./routes/students");
+const userRoutes = require("./routes/users");
 
 // *********** Connect to Mongo  ***********
 console.log('Attempting to connect to mongoose');
@@ -32,6 +32,6 @@ app.use((req, res, next) => {
 });
 
 // ******** Setup the Api routes ***********
-app.use("/api/students", studentRoutes);
+app.use("/api/users", userRoutes);
 
 module.exports = app;
