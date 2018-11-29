@@ -1,4 +1,6 @@
 import { User } from './user';
+import { data } from '../../../mongoConnect';
+var data = data;
 
 
 
