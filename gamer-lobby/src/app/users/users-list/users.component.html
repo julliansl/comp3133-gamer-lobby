@@ -11,14 +11,14 @@
     <th>Status</th>
     <th></th>
   </tr>
-  <tr *ngFor ="let user of users" (click)="onSelect(user)">
+  <tr *ngFor ="let user of users">
     <td>{{user.username}}</td>
     <td>{{user.level}}</td>
     <td>{{user.mode}}</td>
     <td>{{user.time}}</td>
     <td>{{user.game}}</td>
     <td>{{user.status}}</td>
-    <td><button [routerLink]="['/user/',user.username]">Invite</button></td>
+    <td><button [routerLink]="['/users/',user.username]">Invite</button></td>
   </tr>
 </table>
 

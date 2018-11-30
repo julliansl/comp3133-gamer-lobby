@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -11,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
+  
   
   constructor(private apiService: ApiService) { }
 

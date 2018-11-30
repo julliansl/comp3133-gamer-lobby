@@ -22,10 +22,10 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpModule,
     FormsModule,
-    UsersModule
+    UsersModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
