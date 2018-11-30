@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UsersInviteComponent } from './users/users-invite.component';
 import { AdminAddComponent } from './admin/admin-add.component';
 import { AdminEditComponent } from './admin/admin-edit.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [];
 
@@ -19,7 +20,8 @@ const routes: Routes = [];
     AdminComponent,
     UsersInviteComponent,
     AdminAddComponent,
-    AdminEditComponent
+    AdminEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
