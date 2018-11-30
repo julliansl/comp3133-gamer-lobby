@@ -6,6 +6,7 @@ const app = express();
 
 // *********** Include the Api routes ***********
 const userRoutes = require("./routes/users");
+const gameRoutes = require("./routes/games");
 
 // *********** Connect to Mongo  ***********
 console.log('Attempting to connect to mongoose');
@@ -33,5 +34,6 @@ app.use((req, res, next) => {
 
 // ******** Setup the Api routes ***********
 app.use("/api/users", userRoutes);
+app.use("/api/games", gameRoutes);
 
 module.exports = app;

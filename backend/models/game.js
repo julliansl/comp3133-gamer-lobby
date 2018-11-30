@@ -10,4 +10,4 @@ const gameSchema = new Schema({
     status: String
 });
 
-module.exports = mongoose.model('gamelist', userSchema);
+module.exports = mongoose.model('games', gameSchema);
