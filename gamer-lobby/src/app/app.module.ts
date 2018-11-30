@@ -25,7 +25,15 @@ const routes: Routes = [];
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot([
+      {path:'users', component: UsersComponent},
+      {path:'users/:inv', component: UsersInviteComponent},
+      {path:'admin', component: AdminComponent},
+      {path:'admin/:add', component: AdminAddComponent},
+      {path:'admin/:edit', component: AdminEditComponent},
+      {path:'login', component: LoginComponent},
+      {path: '', redirectTo: 'users', pathMatch: 'full'}
+    ], {useHash: true}),
     AppRoutingModule,
     HttpModule
   ],
