@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UsersInviteComponent } from './users/users-invite.component';
 import { AdminAddComponent } from './admin/admin-add.component';
 import { AdminEditComponent } from './admin/admin-edit.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [];
 
@@ -19,11 +20,20 @@ const routes: Routes = [];
     AdminComponent,
     UsersInviteComponent,
     AdminAddComponent,
-    AdminEditComponent
+    AdminEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot([
+      {path:'users', component: UsersComponent},
+      {path:'users/:inv', component: UsersInviteComponent},
+      {path:'admin', component: AdminComponent},
+      {path:'admin/:add', component: AdminAddComponent},
+      {path:'admin/:edit', component: AdminEditComponent},
+      {path:'login', component: LoginComponent},
+      {path: '', redirectTo: 'users', pathMatch: 'full'}
+    ], {useHash: true}),
     AppRoutingModule,
     HttpModule
   ],

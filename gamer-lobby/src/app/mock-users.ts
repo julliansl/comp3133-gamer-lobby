@@ -1,8 +1,4 @@
 import { User } from './user';
-import { data } from '../../../mongoConnect';
-var data = data;
-
-
 
 export const Users: User[] = [
     {username: 'JaePun', level: 3405, mode: 'Competitive', time: '1h', game: 'Overwatch', status:'In Game'},
