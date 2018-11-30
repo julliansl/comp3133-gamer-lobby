@@ -12,11 +12,16 @@ import { switchMap } from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
+  selectedUser: number;
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
   
   ngOnInit() {
     this.userService.updateData();
+    this.users$ = this.activatedRoute.paramMap.pipe(switchMap(params => {
+      this.selectedUser = +params.get('username');
+      return this.userService.users;
+    }));
   }
 }
 
