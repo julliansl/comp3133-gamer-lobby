@@ -4,6 +4,12 @@ const Game = require('../models/game');
 const router = express.Router();
 
 router.get('', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('GET: games Lists');
   Game.find({}, (err, games) => {
@@ -14,6 +20,12 @@ router.get('', (req, res, next) => {
 });
 
 router.get('/:game', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('GET: game by game:' + req.params.game);
   Game.findOne({game: req.params.game}, (err, game) => {
@@ -24,12 +36,24 @@ router.get('/:game', (req, res, next) => {
 })
 
 router.post('/:game', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('UPDATE: game by game: ' + req.params.game);
   game(req.params);
 })
 
 router.put('/:game', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('UPDATE: game by : ' + req.params.game);
 
@@ -39,6 +63,12 @@ router.put('/:game', (req, res, next) => {
 })
 
 router.delete('/:game', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('UPDATE: game by game: ' + req.params.game);
 
