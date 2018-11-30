@@ -27,7 +27,7 @@ const routes: Routes = [];
     BrowserModule,
     RouterModule.forRoot([
       {path:'users', component: UsersComponent},
-      {path:'users/:inv', component: UsersInviteComponent},
+      {path:'user/:inv', component: UsersInviteComponent},
       {path:'admin', component: AdminComponent},
       {path:'admin/:add', component: AdminAddComponent},
       {path:'admin/:edit', component: AdminEditComponent},
