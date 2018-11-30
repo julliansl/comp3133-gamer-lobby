@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { User } from '../users/user';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
 
@@ -8,33 +9,34 @@ import { ApiService } from './api.service';
 })
 export class UserService {
   http: Http = null;
-  data: any = {};
+  users: User[] = [];
   private api_schema = 'users';
 
   constructor(private apiService: ApiService) { }
+
+  getUserData(): void {
+    this.get().subscribe(response => {
+        let data = response.json();
+        for (let user in data) {
+          let userObj = Object.assign(new User(), data[user]);
+          this.users.push(userObj);
+        }
+      });
+  }
 
   get(): Observable<any> {
     return this.apiService.get(this.api_schema);
   }
 
-  /*create(api_schema: String, data = {}) {
-    this.http.post(`${this.api_url}${api_schema}`, JSON.stringify(data))
-      .subscribe(() => {
-        console.log(`Created data in ${api_schema} collection.`);
-      });
+  create(data = {}) {
+    this.apiService.create(this.api_schema, data);
   }
 
-  update(api_schema: String, data = {}) {
-    this.http.put(`${this.api_url}${api_schema}`, JSON.stringify(data))
-      .subscribe(() => {
-        console.log(`Updated data in ${api_schema} collection.`);
-      });
+  update(data = {}) {
+    this.apiService.update(this.api_schema, data);
   }
 
-  delete(api_schema: String, data = {}) {
-    this.http.delete(`${this.api_url}${api_schema}`, JSON.stringify(data))
-      .subscribe(() => {
-        console.log(`Deleted data in ${api_schema} collection.`);
-      });
-  }*/
+  delete(data = {}) {
+    this.apiService.delete(this.api_schema, data);
+  }
 }
