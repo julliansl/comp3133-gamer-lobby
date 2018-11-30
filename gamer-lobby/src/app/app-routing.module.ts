@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UsersComponent } from './users/users-list/users.component';
-import { UsersInviteComponent } from './users/users-invite/users-invite.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminAddComponent } from './admin/admin-add.component';
+import { AdminEditComponent } from './admin/admin-edit.component';
 
-const routes: Routes = [{path:'users', component: UsersComponent},
-{path:'user/:inv', component: UsersInviteComponent},
+const routes: Routes = [
+{path:'admin', component: AdminComponent},
+{path:'admin/:add', component:AdminAddComponent},
+{path:'admin/:edit', component:AdminEditComponent},
 {path: '', redirectTo: 'users', pathMatch: 'full'},
 {path:'**', redirectTo: 'users', pathMatch:'full'}];
 
