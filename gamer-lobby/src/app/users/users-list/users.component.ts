@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from '../user';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users',
@@ -7,7 +11,9 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  constructor(private userService: UserService) { }
+  users$: Observable<User[]>;
+
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
   
   ngOnInit() {
     this.userService.updateData();
