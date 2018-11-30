@@ -8,13 +8,17 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class UserService {
-  http: Http = null;
   users: User[] = [];
   private api_schema = 'users';
 
   constructor(private apiService: ApiService) { }
 
-  getUserData(): void {
+  getData() {
+    this.retrieveUserData();
+    return this.users;
+  }
+
+  retrieveUserData(): void {
     this.get().subscribe(response => {
         let data = response.json();
         for (let user in data) {
