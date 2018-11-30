@@ -5,13 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { HttpModule } from '@angular/http';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [];
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

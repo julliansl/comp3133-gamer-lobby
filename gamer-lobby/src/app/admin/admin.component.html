@@ -1,4 +1,6 @@
-<button (click)="">Login</button>
+Admin<button (click)="">Logout</button>
+<br>
+<button>Add</button>
 <table>
   <tr>
     <th>Username</th>
@@ -7,7 +9,6 @@
     <th>Time</th>
     <th>Game</th>
     <th>Status</th>
-    <th></th>
   </tr>
   <tr *ngFor ="let user of users" (click)="onSelect(user)">
     <td>{{user.username}}</td>
@@ -16,7 +17,8 @@
     <td>{{user.time}}</td>
     <td>{{user.game}}</td>
     <td>{{user.status}}</td>
-    <td><button>Join</button></td>
+    <td><button>Update</button></td>
+    <td><button>Delete</button></td>
   </tr>
 </table>
 
