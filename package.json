@@ -2,24 +2,13 @@
   "name": "comp3123_assignment1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel start:server start:client",
     "start:server": "nodemon ./backend/server.js",
     "start:client": "cd ./gamer-lobby && ng serve --open",
-    "setup": "node ./scripts/setup,js",
+    "setup": "node script/setup.js",
     "setup:env": "npm i & npm i @angular/cli -g & npm i nodemon -g & npm run setup"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1/issues"
-  },
-  "homepage": "https://gitlab.com/comp3123_jphung_jsylucero/comp3123_assignment1#README",
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.3.14",
