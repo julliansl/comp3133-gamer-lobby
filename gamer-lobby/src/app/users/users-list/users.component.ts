@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../user';
 import { switchMap } from 'rxjs/operators';
 
@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
     this.userService.updateData();
     this.users$ = this.activatedRoute.paramMap.pipe(switchMap(params => {
       this.selectedUser = +params.get('username');
-      return this.userService.users;
+      return of(this.userService.users);
     }));
   }
 }

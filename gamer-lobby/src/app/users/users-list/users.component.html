@@ -11,7 +11,7 @@
     <th>Status</th>
     <th></th>
   </tr>
-  <tr *ngFor ="let user of userService.users">
+  <tr *ngFor ="let user of users$ | async">
     <td>{{user.username}}</td>
     <td>{{user.level}}</td>
     <td>{{user.mode}}</td>
