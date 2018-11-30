@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { HttpModule } from '@angular/http';
 import { AdminComponent } from './admin/admin.component';
+import { UsersInviteComponent } from './users/users-invite.component';
+import { AdminAddComponent } from './admin/admin-add.component';
+import { AdminEditComponent } from './admin/admin-edit.component';
 
 const routes: Routes = [];
 
@@ -13,7 +16,10 @@ const routes: Routes = [];
   declarations: [
     AppComponent,
     UsersComponent,
-    AdminComponent
+    AdminComponent,
+    UsersInviteComponent,
+    AdminAddComponent,
+    AdminEditComponent
   ],
   imports: [
     BrowserModule,
