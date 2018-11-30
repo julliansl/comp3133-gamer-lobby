@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { ApiService } from '../../services/api.service';
 import { Observable, } from 'rxjs';
-import { UserService } from '../user.service';
 
 
 
@@ -14,14 +13,21 @@ import { UserService } from '../user.service';
 export class UsersComponent implements OnInit {
   users: User[];
   
-  constructor(private apiService: ApiService, private userService: UserService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.getUserData();
   }
 
-  getUsers(): void {
-    this.userService.getUserData().subscribe(users => this.users = users);
+  getUserData(): void {
+    this.apiService.get('users')
+      .subscribe(response => {
+        let data = response.json();
+        for (let user in data) {
+          let userObj = Object.assign(new User(), data[user]);
+          this.users.push(userObj);
+        }
+      });
   }
-
 }
+
