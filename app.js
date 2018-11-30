@@ -12,7 +12,12 @@ var gameSchema = new Schema({title: String, genre: String, review: String, relea
 
 var Game = mongoose.model('gamelist', gameSchema);
 
-var overwatch = Game({title: 'Overwatch', genre: 'FPS', review: 'Mostly Positive', release: 2016, publisher: 'Blizzard', status: 'Active'});
+var data = Game.find(function(err, game){
+    if (err) return game;
+    console.log(game);
+});
+
+/*var overwatch = Game({title: 'Overwatch', genre: 'FPS', review: 'Mostly Positive', release: 2016, publisher: 'Blizzard', status: 'Active'});
 var mhw = Game({title: 'Monster Hunter World', genre: 'RPG', review: 'Very Positive', release: 2018, publisher: 'Capcom', status: 'Active'});
 var d2 = Game({title: 'Dota 2', genre: 'MOBA', review: 'Very Positive', release: 2013, publiser: 'Valve', status: 'Active'});
 var csgo = Game({title: 'Counter-Strike: Global Offensive', genre: 'FPS', review: 'Very Positive', release: 2012, publiser: 'Valve', status: 'Active'});
@@ -52,4 +57,4 @@ ds3.save(function(err) {
 mk8.save(function(err) {
     if(err) throw err;
     console.log('Game saved');
-});
+});*/

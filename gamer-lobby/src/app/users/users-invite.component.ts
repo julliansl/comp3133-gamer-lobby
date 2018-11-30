@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../game';
 import { ApiService } from '../services//api.service';
+import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-users-invite',
@@ -8,9 +9,10 @@ import { ApiService } from '../services//api.service';
   styleUrls: ['./users-invite.component.css']
 })
 export class UsersInviteComponent implements OnInit {
+  game = {title: 'Overwatch'};
   games: Game[] = []
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   getGameData(): void {
     this.apiService.get('games')
@@ -21,6 +23,10 @@ export class UsersInviteComponent implements OnInit {
           this.games.push(userObj);
         }
       });
+  }
+
+  cancel():void {
+    this.router.navigateByUrl('/users');
   }
 
   ngOnInit() {

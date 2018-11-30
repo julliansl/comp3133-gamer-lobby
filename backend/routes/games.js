@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('', (req, res, next) => {
   res.contentType("application/json");
   console.log('GET: games Lists');
-  game.find({}, (err, games) => {
+  Game.find({}, (err, games) => {
     if (err) 
       throw err;
     res.send(JSON.stringify(games));
@@ -16,7 +16,7 @@ router.get('', (req, res, next) => {
 router.get('/:game', (req, res, next) => {
   res.contentType("application/json");
   console.log('GET: game by game:' + req.params.game);
-  game.findOne({game: req.params.game}, (err, game) => {
+  Game.findOne({game: req.params.game}, (err, game) => {
     if (err) 
       throw err;
     res.send(JSON.stringify(game));
