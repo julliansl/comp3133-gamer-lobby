@@ -9,7 +9,6 @@ import { ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./users-invite.component.css']
 })
 export class UsersInviteComponent implements OnInit {
-  game = {title: 'Overwatch'};
   games: Game[] = []
 
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
@@ -23,6 +22,9 @@ export class UsersInviteComponent implements OnInit {
           this.games.push(userObj);
         }
       });
+  }
+  invite():void{
+    this.router.navigateByUrl('/users');
   }
 
   cancel():void {

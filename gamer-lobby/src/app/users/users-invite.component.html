@@ -8,10 +8,10 @@ Time:
 <br>
 Recently Played:
 <br>
-Game: <select><option>{{game.title}}</option></select>
+Game: <select ><option *ngFor ="let game of games">{{game.title}}</option></select>
 <br>
 <br>
 Test
 <br>
 {{game.title}}
-<button>Invite</button><button (click)="cancel()">Cancel</button>
+<button (click)="invite()">Invite</button><button (click)="cancel()">Cancel</button>
