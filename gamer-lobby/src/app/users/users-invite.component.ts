@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from '../game';
 
 @Component({
   selector: 'app-users-invite',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-invite.component.css']
 })
 export class UsersInviteComponent implements OnInit {
+  games: Game[] = []
 
   constructor() { }
 
