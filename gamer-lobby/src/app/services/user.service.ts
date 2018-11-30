@@ -14,8 +14,14 @@ export class UserService {
   constructor(private apiService: ApiService) { }
 
   getData() {
-    this.retrieveUserData();
+    if (this.users.length == 0)
+      this.updateData();
     return this.users;
+  }
+
+  updateData() {
+    this.users = [];
+    this.retrieveUserData();
   }
 
   retrieveUserData(): void {
