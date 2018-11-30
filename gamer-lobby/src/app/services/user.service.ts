@@ -8,7 +8,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class UserService {
-  users: User[] = [];
+  public users: User[] = [];
   private api_schema = 'users';
 
   constructor(private apiService: ApiService) { }
