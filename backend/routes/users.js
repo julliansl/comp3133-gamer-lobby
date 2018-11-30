@@ -23,24 +23,28 @@ router.get('/:username', (req, res, next) => {
   });
 })
 
+router.post('/:username', (req, res, next) => {
+  res.contentType("application/json");
+  console.log('UPDATE: User by username: ' + req.params.username);
+  User(req.params);
+})
+
 router.put('/:username', (req, res, next) => {
   res.contentType("application/json");
   console.log('UPDATE: User by : ' + req.params.username);
 
-  // Implement Mongoose update User by username
-})
-
-router.post('/:username', (req, res, next) => {
-  res.contentType("application/json");
-  console.log('UPDATE: User by username: ' + req.params.username);
-  User(req.params)
+  User.update({username: req.params.username}, (err, user) => {
+    console.log(`Updated ${user.username} from Users collection`);
+  });
 })
 
 router.delete('/:username', (req, res, next) => {
   res.contentType("application/json");
   console.log('UPDATE: User by username: ' + req.params.username);
-  // Implement Mongoose delete one User by username
 
+  User.findOneAndRemove({username: req.params.username}, (err, user) => {
+    console.log(`Deleted ${user.username} from Users collection`);
+  });
 });
 
 module.exports = router;

@@ -24,4 +24,18 @@ export class ApiService {
         console.log(`Created data in ${api_schema} collection.`);
       });
   }
+
+  update(api_schema: String, data = {}) {
+    this.http.put(`${this.api_url}${api_schema}`, JSON.stringify(data))
+      .subscribe(() => {
+        console.log(`Updated data in ${api_schema} collection.`);
+      });
+  }
+
+  delete(api_schema: String, data = {}) {
+    this.http.delete(`${this.api_url}${api_schema}`, JSON.stringify(data))
+      .subscribe(() => {
+        console.log(`Deleted data in ${api_schema} collection.`);
+      });
+  }
 }
