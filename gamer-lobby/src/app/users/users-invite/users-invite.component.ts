@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../../game';
 import { ApiService } from '../../services/api.service';
-import { ActivatedRoute, Router} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users-invite',
@@ -11,7 +12,8 @@ import { ActivatedRoute, Router} from '@angular/router';
 export class UsersInviteComponent implements OnInit {
   games: Game[] = []
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {let username = +this.route.snapshot.paramMap.get('username'); }
+  constructor(
+    private apiService: ApiService, private route: ActivatedRoute, private router: Router) {let username = +this.route.snapshot.paramMap.get('username'); }
 
   getGameData(): void {
     this.apiService.get('games')
@@ -33,6 +35,10 @@ export class UsersInviteComponent implements OnInit {
 
   ngOnInit() {
     this.getGameData();
+    /*this.hero$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this..getUser(params.get('id')))
+    );*/
   }
 
 }

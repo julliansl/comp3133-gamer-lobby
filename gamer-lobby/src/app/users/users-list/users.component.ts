@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { ApiService } from '../../services/api.service';
-import { Observable } from 'rxjs';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Observable, } from 'rxjs';
+import { UserService } from '../user.service';
+
 
 
 @Component({
@@ -12,24 +12,16 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: User[] = [];
+  users: User[];
   
-  
-  constructor(private apiService: ApiService) { }
-
-  getUserData(): void {
-    this.apiService.get('users')
-      .subscribe(response => {
-        let data = response.json();
-        for (let user in data) {
-          let userObj = Object.assign(new User(), data[user]);
-          this.users.push(userObj);
-        }
-      });
-  }
+  constructor(private apiService: ApiService, private userService: UserService) { }
 
   ngOnInit() {
-    this.getUserData();
+    this.getUsers();
+  }
+
+  getUsers(): void {
+    this.userService.getUserData().subscribe(users => this.users = users);
   }
 
 }
