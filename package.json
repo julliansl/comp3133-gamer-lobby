@@ -4,8 +4,10 @@
   "description": "",
   "scripts": {
     "start": "npm-run-all --parallel start:server start:client",
+    "start-nb": "npm-run-all --parallel start:server start:client-nb",
     "start:server": "nodemon ./backend/server.js",
     "start:client": "cd ./gamer-lobby && ng serve --open",
+    "start:client-nb": "cd ./gamer-lobby && ng serve",
     "setup": "node script/setup.js",
     "setup:env": "npm i & npm i @angular/cli -g & npm i nodemon -g & npm run setup"
   },
