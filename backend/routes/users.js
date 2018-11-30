@@ -4,12 +4,6 @@ const User = require('../models/user');
 const router = express.Router();
 
 router.get('', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('GET: Users Lists');
   User.find({}, (err, users) => {
@@ -20,12 +14,6 @@ router.get('', (req, res, next) => {
 });
 
 router.get('/:username', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('GET: User by username:' + req.params.username);
   User.findOne({username: req.params.username}, (err, user) => {
@@ -36,24 +24,12 @@ router.get('/:username', (req, res, next) => {
 })
 
 router.post('/:username', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('UPDATE: User by username: ' + req.params.username);
   User(req.params);
 })
 
 router.put('/:username', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('UPDATE: User by : ' + req.params.username);
 
@@ -63,12 +39,6 @@ router.put('/:username', (req, res, next) => {
 })
 
 router.delete('/:username', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.contentType("application/json");
   console.log('UPDATE: User by username: ' + req.params.username);
 
