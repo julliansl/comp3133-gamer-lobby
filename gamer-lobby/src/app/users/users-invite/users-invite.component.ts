@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../game';
-import { ApiService } from '../services//api.service';
+import { Game } from '../../game';
+import { ApiService } from '../../services/api.service';
 import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 export class UsersInviteComponent implements OnInit {
   games: Game[] = []
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {let username = +this.route.snapshot.paramMap.get('username'); }
 
   getGameData(): void {
     this.apiService.get('games')

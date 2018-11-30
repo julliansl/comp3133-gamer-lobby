@@ -1,4 +1,4 @@
-Username:
+Username: {{user.username}}
 <br>
 Level:
 <br>
@@ -8,7 +8,10 @@ Time:
 <br>
 Recently Played:
 <br>
-Game: <select ><option *ngFor ="let game of games">{{game.title}}</option></select>
+Game: <select>
+    <option> </option>
+    <option *ngFor ="let game of games">{{game.title}}</option>
+</select>
 <br>
 <br>
 Test

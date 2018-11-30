@@ -18,7 +18,7 @@
     <td>{{user.time}}</td>
     <td>{{user.game}}</td>
     <td>{{user.status}}</td>
-    <td><button routerLink="/user/{{user.username}}">Invite</button></td>
+    <td><button [routerLink]="['/user/',user.username]">Invite</button></td>
   </tr>
 </table>
 
