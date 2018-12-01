@@ -6,7 +6,7 @@ import { UsersInviteComponent } from './users-invite/users-invite.component';
 
 const routes: Routes = [
   {path: 'users', component: UsersComponent},
-  {path: 'users/:inv', component: UsersInviteComponent}
+  {path: 'invite/:username', component: UsersInviteComponent}
 ];
 
 @NgModule({
