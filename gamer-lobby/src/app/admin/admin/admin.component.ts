@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
 import { GameService } from '../../services/game.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-admin',

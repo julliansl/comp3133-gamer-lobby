@@ -1,48 +1,65 @@
 Admin<button (click)="logout()">Logout</button>
 <br>
-<div>
-  <button>Player</button>
-  <button>Games</button>
-</div>
 <br>
 <input type="text" name="search">
 <button (click)="add()">Add</button>
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Level</th>
-    <th>Mode</th>
-    <th>Time</th>
-    <th>Recently Played</th>
-    <th>Status</th>
-  </tr>
-  <tr *ngFor ="let user of userService.users">
-    <td>{{user.username}}</td>
-    <td>{{user.level}}</td>
-    <td>{{user.mode}}</td>
-    <td>{{user.time}}</td>
-    <td>{{user.game}}</td>
-    <td>{{user.status}}</td>
-    <td><button [routerLink]="['/admin/',user.username]">Update</button></td>
-    <td><button>Delete</button></td>
-  </tr>
-</table>
+<br>
+<div>
+    <button>Player</button>
+    <button>Games</button>
+</div>
+<mat-tab-group>
+    <mat-tab label="Users">
+      <ng-template matTabContent>
+        The First Content
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Games">
+      <ng-template matTabContent>
+        The Second Content
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+<div id="user">
+    <table>
+        <tr>
+          <th>Username</th>
+          <th>Level</th>
+          <th>Mode</th>
+          <th>Time</th>
+          <th>Recently Played</th>
+          <th>Status</th>
+        </tr>
+        <tr *ngFor ="let user of userService.users">
+          <td>{{user.username}}</td>
+          <td>{{user.level}}</td>
+          <td>{{user.mode}}</td>
+          <td>{{user.time}}</td>
+          <td>{{user.game}}</td>
+          <td>{{user.status}}</td>
+          <td><button [routerLink]="['/admin/',user.username]">Update</button></td>
+          <td><button>Delete</button></td>
+        </tr>
+      </table>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Genre</th>
-    <th>Review</th>
-    <th>Release</th>
-    <th>Publisher</th>
-    <th>Status</th>
-  </tr>
-  <tr *ngFor ="let game of gameService.games">
-    <td>{{game.title}}</td>
-    <td>{{game.genre}}</td>
-    <td>{{game.review}}</td>
-    <td>{{game.release}}</td>
-    <td>{{game.publisher}}</td>
-    <td>{{game.status}}</td>
-  </tr>
-</table>
+<div id="game">
+    <table>
+        <tr>
+          <th>Title</th>
+          <th>Genre</th>
+          <th>Review</th>
+          <th>Release</th>
+          <th>Publisher</th>
+          <th>Status</th>
+        </tr>
+        <tr *ngFor ="let game of gameService.games">
+          <td>{{game.title}}</td>
+          <td>{{game.genre}}</td>
+          <td>{{game.review}}</td>
+          <td>{{game.release}}</td>
+          <td>{{game.publisher}}</td>
+          <td>{{game.status}}</td>
+        </tr>
+      </table>
+</div>
