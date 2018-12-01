@@ -1,0 +1,25 @@
+.search {
+  margin: 15px 0;
+
+  padding: 3px 15px;
+
+  border: 1px solid rgba(170,170,170,1.0);
+  border-radius: 500px;
+  -webkit-border-radius: 500px;
+  -moz-border-radius: 500px;
+  -ms-border-radius: 500px;
+  -o-border-radius: 500px;
+
+  outline: none !important;
+
+  transition: all ease-in-out 0.1s;
+  -webkit-transition: all ease-in-out 0.1s;
+  -moz-transition: all ease-in-out 0.1s;
+  -ms-transition: all ease-in-out 0.1s;
+  -o-transition: all ease-in-out 0.1s;
+}
+
+.search:focus {
+  border: 1px solid rgba(170,170,255,1.0);
+  box-shadow: 0 0 3px rgba(170,170,255,1.0);
+}
