@@ -16,15 +16,33 @@ Admin<button>Logout</button>
     <th>Recently Played</th>
     <th>Status</th>
   </tr>
-  <tr *ngFor ="let user of users" (click)="onSelect(user)">
+  <tr *ngFor ="let user of userService.users">
     <td>{{user.username}}</td>
     <td>{{user.level}}</td>
     <td>{{user.mode}}</td>
     <td>{{user.time}}</td>
     <td>{{user.game}}</td>
     <td>{{user.status}}</td>
-    <td><button>Update</button></td>
+    <td><button [routerLink]="['/admin/',user.username]">Update</button></td>
     <td><button>Delete</button></td>
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Genre</th>
+    <th>Review</th>
+    <th>Release</th>
+    <th>Publisher</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor ="let game of gameService.games">
+    <td>{{game.title}}</td>
+    <td>{{game.genre}}</td>
+    <td>{{game.review}}</td>
+    <td>{{game.release}}</td>
+    <td>{{game.publisher}}</td>
+    <td>{{game.status}}</td>
+  </tr>
+</table>
