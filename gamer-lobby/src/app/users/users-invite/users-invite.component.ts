@@ -4,8 +4,6 @@ import { Game } from '../../game';
 import { GameService } from '../../services/game.service';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { User } from '../user';
-import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -14,21 +12,18 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./users-invite.component.css']
 })
 export class UsersInviteComponent implements OnInit {
-  user: Observable<User>;
+  user: User;
 
-  constructor(private userService: UserService, private gameService: GameService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private gameService: GameService,
+    private route: ActivatedRoute, 
+    private router: Router) { 
+      let username = this.route.snapshot.paramMap.get('username');
+      this.user = this.userService.getUser(username);
+  }
 
-  ngOnInit() {
-    this.gameService.updateData();
-    this.user = this.route.paramMap.pipe(
-      switchMap((param: ParamMap) => this.userService.getUser(param.get('username')))
-    );
-  }
-  
-  getUser(): void {
-    const user = this.route.snapshot.paramMap.get('username');
-    this.user = this.userService.getUser(user);
-  }
+  ngOnInit() { }
 
   invite(): void {
     this.router.navigateByUrl('/users');
