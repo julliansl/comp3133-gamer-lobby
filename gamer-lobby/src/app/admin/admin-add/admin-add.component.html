@@ -1,3 +1,7 @@
-<p>
-  admin-add works!
-</p>
+Username: <input type="text" name="username"><br>
+Level: <select name="level"><option>Select a level</option><option>1</option></select><br>
+Mode: <input type="text" name="mode"><br>
+Time: <input type="text" name="time"><br>
+Recently Played: <select name="game"><option>Select a game</option><option *ngFor="let game of gameService.games">{{game.title}}</option></select><br>
+Status: <select name="status"><option>Select a status</option><option>In Game</option><option>Online</option></select><br>
+<button (click)="add()">Add</button><button (click)="cancel()">Cancel</button>
