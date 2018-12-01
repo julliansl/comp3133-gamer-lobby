@@ -12,13 +12,13 @@ import { UserService } from '../../services/user.service';
 })
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
-  selectedUser: number;
+  selectedUser: String;
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
   
   ngOnInit() {
     this.users$ = this.activatedRoute.paramMap.pipe(switchMap(params => {
-      this.selectedUser = +params.get('username');
+      this.selectedUser = params.get('username');
       return of(this.userService.users);
     }));
   }
