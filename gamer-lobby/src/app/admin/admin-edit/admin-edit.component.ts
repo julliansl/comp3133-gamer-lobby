@@ -19,4 +19,12 @@ export class AdminEditComponent implements OnInit {
     this.user = this.userService.getUser(username);
   }
 
+  update(): void {
+    this.router.navigateByUrl('/admin');
+  }
+
+  cancel(): void {
+    this.router.navigateByUrl('/admin');
+  }
+
 }
