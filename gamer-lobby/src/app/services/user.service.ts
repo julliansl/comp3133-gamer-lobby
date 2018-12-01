@@ -25,11 +25,7 @@ export class UserService {
   }
 
   getUser(username: String) {
-    for (let user of this.users) {
-      if (user.username == username) {
-        return user;
-      }
-    }
+    return this.users.find(user => user.username == username);
   }
 
   retrieveAllUserData(): void {
