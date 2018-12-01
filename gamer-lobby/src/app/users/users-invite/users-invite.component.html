@@ -10,7 +10,7 @@ Time: {{user.time}}
 Recently Played: {{user.game}}
 <br>
 Game: <select>
-    <option> </option>
+    <option disabled selected>- Select a game -</option>
     <option *ngFor ="let game of gameService.games">{{game.title}}</option>
 </select>
 <br>
