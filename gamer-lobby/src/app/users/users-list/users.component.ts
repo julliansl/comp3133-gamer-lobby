@@ -7,6 +7,9 @@ import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-users',
+  host: {
+    class: 'content-block padding-25'
+  },
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })

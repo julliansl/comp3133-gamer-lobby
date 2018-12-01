@@ -10,6 +10,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-admin',
+  host: {
+    class: 'content-block padding-25'
+  },
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })

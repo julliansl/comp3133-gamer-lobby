@@ -3,6 +3,9 @@ import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
+  host: {
+    class: 'login content-block padding-25 center-absolute'
+  },
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

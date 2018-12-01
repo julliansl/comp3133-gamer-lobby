@@ -7,6 +7,9 @@ import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users-invite',
+  host: {
+    class: 'content-block padding-25'
+  },
   templateUrl: './users-invite.component.html',
   styleUrls: ['./users-invite.component.css']
 })
