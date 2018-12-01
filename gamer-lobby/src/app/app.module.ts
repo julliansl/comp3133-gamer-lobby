@@ -11,7 +11,6 @@ import { AdminAddComponent } from './admin/admin-add.component';
 import { AdminEditComponent } from './admin/admin-edit.component';
 import { LoginComponent } from './login/login.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

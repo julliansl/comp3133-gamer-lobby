@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('', (req, res, next) => {
   res.contentType("application/json");
-  console.log('GET: games Lists');
+  console.log('GET: Games Lists');
   Game.find({}, (err, games) => {
     if (err) 
       throw err;
