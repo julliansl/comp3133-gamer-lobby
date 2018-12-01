@@ -21,10 +21,18 @@ export class UserService {
 
   updateData() {
     this.users = [];
-    this.retrieveUserData();
+    this.retrieveAllUserData();
   }
 
-  retrieveUserData(): void {
+  getUser(username: String) {
+    for (let user of this.users) {
+      if (user.username == username) {
+        return user;
+      }
+    }
+  }
+
+  retrieveAllUserData(): void {
     this.get().subscribe(response => {
         let data = response.json();
         for (let user in data) {
