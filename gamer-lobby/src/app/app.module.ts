@@ -4,20 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { UsersModule } from './users/users.module';
+import { AdminModule } from './admin/admin.module';
 
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
-import { AdminAddComponent } from './admin/admin-add.component';
-import { AdminEditComponent } from './admin/admin-edit.component';
 import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
-    AdminAddComponent,
-    AdminEditComponent,
     LoginComponent,
     NavBarComponent
   ],
@@ -26,6 +21,7 @@ import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
     HttpModule,
     FormsModule,
     UsersModule,
+    AdminModule,
     AppRoutingModule
   ],
   providers: [],
