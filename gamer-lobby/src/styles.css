@@ -22,6 +22,7 @@ body {
   text-align: left;
   background: rgb(245,245,245);
 }
+
 /******************
 Content Stylings
 *******************/
@@ -139,4 +140,47 @@ a:hover {
 
 .padding-25 {
   padding: 25px;
+}
+
+input, button {
+  border: 1px solid rgba(170,170,170);
+
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+
+  transition: all ease-in-out 0.1s;
+  -webkit-transition: all ease-in-out 0.1s;
+  -moz-transition: all ease-in-out 0.1s;
+  -ms-transition: all ease-in-out 0.1s;
+  -o-transition: all ease-in-out 0.1s;    
+}
+
+input:focus {
+  border: 1px solid rgba(170,170,255,1.0);
+  box-shadow: 0 0 3px rgba(170,170,255,1.0);
+}
+
+input[type=button], button {
+  min-height: 25px;
+  padding: 3px 15px;
+
+  background: rgb(245,245,245);
+}
+
+input[type=button]:hover, button:hover,
+input[type=button]:focus, button:focus {
+  background: rgb(252,252,252);
+}
+
+input[type=button]:active, button:active {
+  background: rgb(252,252,252);
+}
+
+input[type=button] + input[type=button], 
+input[type=button] + button,
+button + button, button + input[type=button] {
+  margin-left: 5px;
 }
