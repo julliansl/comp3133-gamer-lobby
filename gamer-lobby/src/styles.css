@@ -184,3 +184,11 @@ input[type=button] + button,
 button + button, button + input[type=button] {
   margin-left: 5px;
 }
+
+.listing {
+  width: 100%;
+}
+
+.listing > tbody > tr > td.options * {
+  width: 100%;
+}

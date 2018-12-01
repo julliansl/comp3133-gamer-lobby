@@ -1,5 +1,5 @@
 <input id="lobby-search" class="search" type="text" name="search" placeholder="Search">
-<table class="list" style="width: 100%;">
+<table class="listing">
   <tr class="no-select">
     <th>Username</th>
     <th>Level</th>
@@ -16,6 +16,6 @@
     <td>{{user.time}}</td>
     <td>{{user.game}}</td>
     <td>{{user.status}}</td>
-    <td><button style="width: 100%;" [routerLink]="['/invite/',user.username]">Invite</button></td>
+    <td class="options"><button [routerLink]="['/invite/',user.username]">Invite</button></td>
   </tr>
 </table>
