@@ -1,12 +1,13 @@
+<div>
 Username: {{user.username}}
 <br>
-Level:
+Level: {{user.level}}
 <br>
-Mode:
+Mode: {{user.mode}}
 <br>
-Time:
+Time: {{user.time}}
 <br>
-Recently Played:
+Recently Played: {{user.game}}
 <br>
 Game: <select>
     <option> </option>
@@ -14,7 +15,5 @@ Game: <select>
 </select>
 <br>
 <br>
-Test
-<br>
-{{game.title}}
 <button (click)="invite()">Invite</button><button (click)="cancel()">Cancel</button>
+</div>
