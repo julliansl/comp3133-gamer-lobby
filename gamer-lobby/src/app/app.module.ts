@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminAddComponent } from './admin/admin-add.component';
 import { AdminEditComponent } from './admin/admin-edit.component';
 import { LoginComponent } from './login/login.component';
+import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginComponent } from './login/login.component';
     AdminComponent,
     AdminAddComponent,
     AdminEditComponent,
-    LoginComponent
+    LoginComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
