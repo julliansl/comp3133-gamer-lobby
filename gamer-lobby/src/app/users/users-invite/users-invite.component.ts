@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../user';
 import { Game } from '../../game';
 import { GameService } from '../../services/game.service';
 import { UserService } from '../../services/user.service';
@@ -10,10 +11,14 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./users-invite.component.css']
 })
 export class UsersInviteComponent implements OnInit {
-  constructor(private gameService: GameService,
+  user: User;
+
+  constructor(private userService: UserService,
+      private gameService: GameService,
       private route: ActivatedRoute,
       private router: Router) {
-    let username = +this.route.snapshot.paramMap.get('username'); 
+    let username = this.route.snapshot.paramMap.get('username'); 
+    this.user = this.userService.getUser(username);
   }
 
   invite(): void {
@@ -24,7 +29,5 @@ export class UsersInviteComponent implements OnInit {
     this.router.navigateByUrl('/users');
   }
 
-  ngOnInit() {
-    this.gameService.updateData();
-  }
+  ngOnInit() { }
 }
