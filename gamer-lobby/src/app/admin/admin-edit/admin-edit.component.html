@@ -1,13 +1,13 @@
 Username: <input type="text" name="username" value="{{user.username}}">
 <br>
-Level: <select><option>1</option></select>
+Level: <select><option>Select a level</option><option>1</option></select>
 <br>
 Mode: <input type="text" name="mode" value="{{user.mode}}">
 <br>
 Time: <input type="text" name="time" value="{{user.time}}">
 <br>
-Recently Played: <select><option></option></select>
+Recently Played: <select><option>Select a game</option><option *ngFor="let game of gameService.games">{{game.title}}</option></select>
 <br>
-Status: <select><option>In Game</option><option>Online</option></select>
+Status: <select><option>Select a status</option><option>In Game</option><option>Online</option></select>
 <br>
 <button>Update</button><button>Cancel</button>
