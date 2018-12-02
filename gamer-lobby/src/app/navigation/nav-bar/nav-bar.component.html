@@ -4,7 +4,7 @@
             <a class="nav-link" [routerLink]="['/invite']">Users</a>
         </div>
         <div class="navbar-section right">
-            <a class="nav-link" routerLink="/login">Login</a>
+            <a class="nav-link" *ngIf='router.url !== "/login"' routerLink="/login">Login</a>
         </div>
     </div>
 </div>
