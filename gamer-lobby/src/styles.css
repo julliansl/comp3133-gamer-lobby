@@ -144,10 +144,18 @@ a:hover {
   padding: 25px;
 }
 
-input, button {
+label, input, button {
   padding: 3px 15px;
   margin: 15px 0;
 
+  min-height: 2em;
+}
+
+label {
+  padding: 0 15px;
+}
+
+input, button {
   border: 1px solid rgba(170,170,170);
   border-radius: 500px;
   -webkit-border-radius: 500px;
@@ -170,7 +178,7 @@ input:focus {
 }
 
 input[type=button], button {
-  min-height: 25px;
+  min-height: 2em;
   background: rgb(245,245,245);
 }
 
@@ -213,4 +221,37 @@ input[disabled], button[disabled] {
   border-bottom: 1px solid rgb(220,220,220);
 
   font-weight: 400;
+}
+
+
+/******************
+  Login Styles
+*******************/
+.login.content-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: flex-start;
+  align-items: flex-start;
+  
+  min-height: 225px; max-height: 225px;
+  min-width: 400px; max-width: 400px;
+}
+
+.login > h2 {
+  position: absolute;
+  top: -40px; left: 15px;
+}
+
+.login > label {
+  text-align: right;
+  flex-basis: calc(30% - 12.5px);
+}
+
+.login > label + input {
+  flex-basis: calc(70% - 12.5px);
+}
+
+.login > button {
+  flex-basis: 32.5%;
 }
