@@ -1,4 +1,4 @@
-<input id="lobby-search" class="search" type="text" name="search" placeholder="Search">
+<input mdInput #search [(ngModel)]="searchText" id="search" (input)="searchFilter(search.value)" class="search" type="text" name="search" placeholder="Search" />
 <table class="listing">
   <tr class="no-select">
     <th>Username</th>
@@ -9,7 +9,7 @@
     <th>Status</th>
     <th></th>
   </tr>
-  <tr *ngFor ="let user of userService.users">
+  <tr *ngFor="let user of filteredUsers">
     <td>{{user.username}}</td>
     <td>{{user.level}}</td>
     <td>{{user.mode}}</td>

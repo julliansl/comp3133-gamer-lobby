@@ -5,6 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 
 import { UsersComponent } from './users-list/users.component';
 import { UsersInviteComponent } from './users-invite/users-invite.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { UsersInviteComponent } from './users-invite/users-invite.component';
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    FormsModule
   ]
 })
 export class UsersModule { }
