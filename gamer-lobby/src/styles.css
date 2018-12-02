@@ -187,8 +187,9 @@ input[type=button]:active, button:active {
   margin-left: 5px;
 }
 
-input[type=text], input[type=password] {
-  
+input[disabled], button[disabled] {
+  cursor: not-allowed;
+  background: rgb(220,220,220) !important;
 }
 
 .listing {
