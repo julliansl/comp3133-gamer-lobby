@@ -1,19 +1,14 @@
-<div>
-Username: {{user.username}}
-<br>
-Level: {{user.level}}
-<br>
-Mode: {{user.mode}}
-<br>
-Time: {{user.time}}
-<br>
-Recently Played: {{user.game}}
-<br>
-Game: <select>
-    <option disabled selected>- Select a game -</option>
-    <option *ngFor ="let game of gameService.games">{{game.title}}</option>
-</select>
-<br>
-<br>
-<button (click)="invite()">Invite</button><button (click)="cancel()">Cancel</button>
-</div>
+<form (ngSubmit)="onSubmit()" #inviteForm="ngForm">
+    Username: {{user.username}}<br>
+    Level: {{user.level}}<br>
+    Mode: {{user.mode}}<br>
+    Time: {{user.time}}<br>
+    Recently Played: {{user.game}}<br>
+    Game: <select name="game" required>
+        <option disabled selected value="">- Select a game -</option>
+        <option *ngFor ="let game of gameService.games" [value]="game.title">{{game.title}}</option>
+    </select>
+    <br>
+    <br>
+    <button [disabled]="!inviteForm.form.valid" (click)="invite()">Invite</button><button (click)="cancel()">Cancel</button>
+</form>
