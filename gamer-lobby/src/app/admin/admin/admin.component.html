@@ -1,5 +1,5 @@
 <span>Admin</span><button (click)="logout()">Logout</button>
-<input type="text" name="search"><button (click)="add()">Add</button>
+<input mdInput #search [(ngModel)]="searchText" id="search" (input)="searchFilter(search.value)" class="search" type="text" name="search" placeholder="Search" /><button (click)="add()">Add</button>
 <mat-tab-group>
   <mat-tab label="Player">
     <table class="listing">
@@ -11,7 +11,7 @@
         <th>Recently Played</th>
         <th colspan="3">Status</th>
       </tr>
-      <tr *ngFor ="let user of userService.users">
+      <tr *ngFor ="let user of filteredUsers">
         <td>{{user.username}}</td>
         <td>{{user.level}}</td>
         <td>{{user.mode}}</td>
@@ -33,7 +33,7 @@
         <th>Publisher</th>
         <th>Status</th>
       </tr>
-      <tr *ngFor ="let game of gameService.games">
+      <tr *ngFor ="let game of filteredGames">
         <td>{{game.title}}</td>
         <td>{{game.genre}}</td>
         <td>{{game.review}}</td>
