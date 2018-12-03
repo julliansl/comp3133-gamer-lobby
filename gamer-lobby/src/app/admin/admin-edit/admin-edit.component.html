@@ -1,8 +1,11 @@
 <form #editForm="ngForm" novalidate>
-    Username: <input type="text" name="username" [(ngModel)]="user.username" ngModel required><br>
+    Username: <input type="text" name="username" [(ngModel)]="user.username" #username="ngModel" ngModel required><br>
+    <div [hidden]="username.valid || username.pristine">Username required</div>
     Level: <select name="level" ngModel required><option disabled selected>-Select a level-</option><option>1</option></select><br>
-    Mode: <input type="text" name="mode" [(ngModel)]="user.mode" ngModel required><br>
-    Time: <input type="text" name="time" [(ngModel)]="user.time" ngModel required><br>
+    Mode: <input type="text" name="mode" [(ngModel)]="user.mode" #mode="ngModel" ngModel required><br>
+    <div [hidden]="mode.valid || mode.pristine">Username required</div>
+    Time: <input type="text" name="time" [(ngModel)]="user.time" #time="ngModel" ngModel required><br>
+    <div [hidden]="time.valid || time.pristine">Username required</div>
     Recently Played: <select name="game" ngModel required><option disabled selected>-Select a game-</option><option *ngFor="let game of gameService.games">{{game.title}}</option></select><br>
     Status: <select name="status" ngModel required><option disabled selected>-Select a status-</option><option>In Game</option><option>Online</option></select><br>
     <button [disabled]="!editForm.form.valid" (click)="update()">Update</button><button (click)="cancel()">Cancel</button>
