@@ -1,13 +1,9 @@
-Username: <input type="text" name="username" value="{{user.username}}">
-<br>
-Level: <select><option>Select a level</option><option>1</option></select>
-<br>
-Mode: <input type="text" name="mode" value="{{user.mode}}">
-<br>
-Time: <input type="text" name="time" value="{{user.time}}">
-<br>
-Recently Played: <select><option>Select a game</option><option *ngFor="let game of gameService.games">{{game.title}}</option></select>
-<br>
-Status: <select><option>Select a status</option><option>In Game</option><option>Online</option></select>
-<br>
-<button (click)="update()">Update</button><button (click)="cancel()">Cancel</button>
+<form #editForm="ngForm" novalidate>
+    Username: <input type="text" name="username" [(ngModel)]="user.username" ngModel required><br>
+    Level: <select name="level" ngModel required><option disabled selected>-Select a level-</option><option>1</option></select><br>
+    Mode: <input type="text" name="mode" [(ngModel)]="user.mode" ngModel required><br>
+    Time: <input type="text" name="time" [(ngModel)]="user.time" ngModel required><br>
+    Recently Played: <select name="game" ngModel required><option disabled selected>-Select a game-</option><option *ngFor="let game of gameService.games">{{game.title}}</option></select><br>
+    Status: <select name="status" ngModel required><option disabled selected>-Select a status-</option><option>In Game</option><option>Online</option></select><br>
+    <button [disabled]="!editForm.form.valid" (click)="update()">Update</button><button (click)="cancel()">Cancel</button>
+</form>

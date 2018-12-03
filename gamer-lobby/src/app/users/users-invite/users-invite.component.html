@@ -1,12 +1,12 @@
-<form (ngSubmit)="onSubmit()" #inviteForm="ngForm">
+<form #inviteForm="ngForm">
     Username: {{user.username}}<br>
     Level: {{user.level}}<br>
     Mode: {{user.mode}}<br>
     Time: {{user.time}}<br>
     Recently Played: {{user.game}}<br>
-    Game: <select name="game" required>
-        <option disabled selected value="">- Select a game -</option>
-        <option *ngFor ="let game of gameService.games" [value]="game.title">{{game.title}}</option>
+    Game: <select name="game" ngModel required>
+        <option disabled selected>- Select a game -</option>
+        <option *ngFor ="let game of gameService.games">{{game.title}}</option>
     </select>
     <br>
     <br>

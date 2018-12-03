@@ -15,7 +15,6 @@ import { switchMap } from 'rxjs/operators';
 })
 export class UsersInviteComponent implements OnInit {
   user: User = new User();
-  submitted = false;
 
   constructor(
     private userService: UserService, 
@@ -27,10 +26,6 @@ export class UsersInviteComponent implements OnInit {
   ngOnInit() { 
     let username = this.route.snapshot.paramMap.get('username');
     this.user = this.userService.getUser(username);
-  }
-
-  onSubmit(){
-    this.submitted=true;
   }
 
   invite(): void {
