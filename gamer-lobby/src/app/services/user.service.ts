@@ -24,7 +24,9 @@ export class UserService {
     this.retrieveAllUserData();
   }
 
-  getUser(username: string) {
+  getUser(username: string): User {
+    if (this.users.length == 0)
+      this.updateData();
     for (let user of this.users) {
       if (user.username == username) {
         return user;
