@@ -24,8 +24,11 @@ export class UsersInviteComponent implements OnInit {
   }
 
   ngOnInit() { 
-    let username = this.route.snapshot.paramMap.get('username');
-    this.user = this.userService.getUser(username);
+    this.route.params.subscribe(params => {
+      setTimeout(() => {
+        this.user = this.userService.getUser(params.username);
+      }, 100);
+    });
   }
 
   invite(): void {
