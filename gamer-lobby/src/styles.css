@@ -58,6 +58,13 @@ Content Stylings
   -webkit-animation: content-slide-up ease-in-out 1.5s;
 }
 
+.content-area > h1 {
+  flex-basis: 100%;
+  width: 100%;
+
+  text-align: center; 
+}
+
 @keyframes content-slide-up {
   0% {
     opacity: 0;
