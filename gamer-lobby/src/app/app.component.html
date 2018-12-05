@@ -1,7 +1,8 @@
 <nav-bar></nav-bar>
 <div class="content-body">
   <div class="content-area">
-    <h1 class="no-select" *ngIf='router.url !== "/login"' style="text-align: center; width: 100%;">{{ title }}</h1>
+    <h1 class="no-select" *ngIf='router.url.includes("login") && !router.url.includes("admin")'>{{ title }}</h1>
+    <h1 class="no-select" *ngIf='router.url.includes("admin")'>Administration Panel</h1>
     <router-outlet></router-outlet>
   </div>
 </div>
