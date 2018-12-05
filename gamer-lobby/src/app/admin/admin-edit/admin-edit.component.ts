@@ -6,17 +6,27 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-admin-edit',
+  host: {
+    class: 'form content-block padding-25'
+  },
   templateUrl: './admin-edit.component.html',
   styleUrls: ['./admin-edit.component.css']
 })
 export class AdminEditComponent implements OnInit {
   user: User = new User();
 
-  constructor(private gameService: GameService, private userService: UserService, private router : Router, private route: ActivatedRoute) { }
+  constructor(private gameService: GameService, 
+    private userService: UserService, 
+    private router: Router, 
+    private route: ActivatedRoute) { 
+  }
 
   ngOnInit() {
-    let username = this.route.snapshot.paramMap.get('username');
-    this.user = this.userService.getUser(username);
+    this.route.params.subscribe(params => {
+      setTimeout(() => {
+        this.user = this.userService.getUser(params.username);
+      }, 100);
+    });
   }
 
   update(): void {
