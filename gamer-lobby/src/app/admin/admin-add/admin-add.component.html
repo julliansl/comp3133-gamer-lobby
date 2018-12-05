@@ -1,4 +1,5 @@
 <form #addForm="ngForm" novalidate>
+    <h2>Create/Add User</h2>
     <label for="username">Username:</label> 
         <input id="username" type="text" name="username" #username="ngModel" ngModel required>
         <div [hidden]="username.valid || username.pristine">Username required</div>
