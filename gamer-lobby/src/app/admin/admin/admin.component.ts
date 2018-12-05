@@ -52,28 +52,25 @@ export class AdminComponent implements OnInit {
   }
 
   searchFilter(value) {
-    if (!value) this.assignUsers();
-    this.filteredUsers = this.userService.users.filter((item) => {
-      const regex = new RegExp(value, 'i');
-      if (value == "")
-        return true;
-      for (let key in item) {
-        if (regex.test(item[key]))
-          return true;
-      }
-      return false;
-    });
+    if (!value) {
+      this.assignUsers();
+      this.assignGames();
+    }
 
-    if (!value) this.assignGames();
-    this.filteredGames = this.gameService.games.filter((item) => {
-      const regex = new RegExp(value, 'i');
-      if (value == "")
-        return true;
-      for (let key in item) {
-        if (regex.test(item[key]))
-          return true;
+    const regex = new RegExp(value, 'i');
+    for (let key of Object.keys(this)){
+      if (key === "filteredUsers" || key === "filteredGames") {
+        let serviceName = key.toLowerCase().includes("user") ? "user" : "game";
+        this[key] = this[`${serviceName}Service`][`${serviceName}s`].filter((item) => {
+          if (value == "")
+            return true;
+          for (let key in item) {
+            if (regex.test(item[key]))
+              return true;
+          }
+          return false;
+        });
       }
-      return false;
-    });
+    }
   }
 }
