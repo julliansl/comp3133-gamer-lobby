@@ -144,18 +144,18 @@ a:hover {
   padding: 25px;
 }
 
-label, input, button {
+label, input, button, select, .info {
   padding: 3px 15px;
   margin: 15px 0;
 
   min-height: 2em;
 }
 
-label {
+label, .info {
   padding: 0 15px;
 }
 
-input, button {
+input, button, select {
   border: 1px solid rgba(170,170,170);
   border-radius: 500px;
   -webkit-border-radius: 500px;
@@ -238,20 +238,44 @@ input[disabled], button[disabled] {
   min-width: 400px; max-width: 400px;
 }
 
-.login > h2 {
+.login > h2,
+.form > form > h2 {
   position: absolute;
   top: -40px; left: 15px;
 }
 
-.login > label {
+.login > label,
+.form > form > label {
   text-align: right;
   flex-basis: calc(30% - 12.5px);
 }
 
-.login > label + input {
+.login > label + *,
+.form > form > label + * {
   flex-basis: calc(70% - 12.5px);
 }
 
-.login > button {
+.login > button,
+.form > form > button {
   flex-basis: 32.5%;
+}
+
+/******************
+  Form Styles
+*******************/
+.form.content-block {
+  flex-basis: 600px;
+  flex-grow: 0;
+
+  min-height: 225px;
+  min-width: 600px;
+}
+
+.form > form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: flex-start;
+  align-items: flex-start;
+  min-width: 100%; max-width: 100%;
 }
