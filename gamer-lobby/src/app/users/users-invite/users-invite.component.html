@@ -1,14 +1,20 @@
-<form #inviteForm="ngForm">
-    Username: {{user.username}}<br>
-    Level: {{user.level}}<br>
-    Mode: {{user.mode}}<br>
-    Time: {{user.time}}<br>
-    Recently Played: {{user.game}}<br>
-    Game: <select name="game" ngModel required>
-        <option disabled selected>- Select a game -</option>
-        <option *ngFor ="let game of gameService.games">{{game.title}}</option>
+<form #inviteForm="ngForm" class="no-select">
+    <h2>Friend Invitation</h2>
+    <label>Username:</label>
+        <div class="info">{{user.username}}</div>
+    <label>Level:</label>
+        <div class="info">{{user.level}}</div>
+    <label>Mode:</label>
+        <div class="info">{{user.mode}}</div>
+    <label>Time:</label>
+        <div class="info">{{user.time}}</div>
+    <label>Recently Played:</label>
+        <div class="info">{{user.game}}</div>
+    <label>Game:</label> 
+    <select name="game" ngModel required>
+        <option value="" disabled selected>- Select a game -</option>
+        <option *ngFor="let game of gameService.games" value="{{game.title}}">{{game.title}}</option>
     </select>
-    <br>
-    <br>
-    <button [disabled]="!inviteForm.form.valid" (click)="invite()">Invite</button><button (click)="cancel()">Cancel</button>
+    <button [disabled]="!inviteForm.form.valid" (click)="invite()">Invite</button>
+    <button (click)="cancel()">Cancel</button>
 </form>
