@@ -20,7 +20,7 @@
         <td>{{user.game}}</td>
         <td>{{user.status}}</td>
         <td class="options"><button [routerLink]="['/admin/',user.username]">Update</button></td>
-        <td class="options"><button>Delete</button></td>
+        <td class="options" (click)="delete(user)"><button>Delete</button></td>
       </tr>
     </table>
   </mat-tab>
