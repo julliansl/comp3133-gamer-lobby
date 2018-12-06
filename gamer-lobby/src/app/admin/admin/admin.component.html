@@ -1,5 +1,6 @@
-<span>Admin</span><button (click)="logout()">Logout</button>
-<input mdInput #search [(ngModel)]="searchText" id="search" (input)="searchFilter(search.value)" class="search" type="text" name="search" placeholder="Search" /><button (click)="add()">Add</button>
+<input id="search" class="search" type="text" name="search" placeholder="Search" 
+  (input)="searchFilter(search.value)" mdInput #search [(ngModel)]="searchText" />
+<button (click)="add()">Add</button>
 <mat-tab-group>
   <mat-tab label="Player">
     <table class="listing">
