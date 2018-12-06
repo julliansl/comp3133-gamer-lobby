@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule} from '@angular/forms';
 import { UsersModule } from './users/users.module';
 import { AdminModule } from './admin/admin.module';
+import { LoginModule } from './login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -14,7 +15,6 @@ import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     NavBarComponent
   ],
   imports: [
@@ -24,6 +24,7 @@ import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
     FormsModule,
     UsersModule,
     AdminModule,
+    LoginModule,
     AppRoutingModule
   ],
   providers: [],
