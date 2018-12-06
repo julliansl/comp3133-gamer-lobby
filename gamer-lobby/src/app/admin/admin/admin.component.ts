@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../users/user';
-import { Game } from '../../game';
+import { User } from '../../models/user';
+import { Game } from '../../models/game';
 import { ApiService } from '../../services/api.service';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';

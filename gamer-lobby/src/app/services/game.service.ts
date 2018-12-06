@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Game } from '../game';
+import { Game } from '../models/game';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
 

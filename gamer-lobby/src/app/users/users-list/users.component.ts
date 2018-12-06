@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { User } from '../user';
+import { User } from '../../models/user';
 import { switchMap } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
 

@@ -1,4 +1,4 @@
-export class Game{
+export class Game {
     title: string;
     genre: string;
     review: string;
