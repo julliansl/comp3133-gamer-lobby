@@ -12,9 +12,7 @@ export class UserService {
   public users: User[] = [];
   private api_schema = 'users';
 
-  constructor(private authService: AuthService,
-    private apiService: ApiService) {
-  }
+  constructor(private apiService: ApiService) { }
 
   getData() {
     if (this.users.length == 0)
@@ -52,17 +50,14 @@ export class UserService {
   }
 
   create(data: any = {}) {
-    data.token = this.authService.authInfo.token;
     this.apiService.create(this.api_schema, data);
   }
 
   update(data: any = {}) {
-    data.token = this.authService.authInfo.token;
     this.apiService.update(this.api_schema, data);
   }
 
   delete(data: any = {}) {
-    data.token = this.authService.authInfo.token;
     this.apiService.delete(this.api_schema, data);
   }
 }
