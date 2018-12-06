@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Game } from '../models/game';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ export class GameService {
   public games: Game[] = [];
   private api_schema = 'games';
 
-  constructor(private apiService: ApiService) { }
+  constructor(private authService: AuthService,
+    private apiService: ApiService) {
+  }
 
   getData() {
     if (this.games.length == 0)
@@ -38,15 +41,18 @@ export class GameService {
     return this.apiService.get(this.api_schema);
   }
 
-  create(data = {}) {
+  create(data: any = {}) {
+    data.token = this.authService.authInfo.token;
     this.apiService.create(this.api_schema, data);
   }
 
-  update(data = {}) {
+  update(data: any = {}) {
+    data.token = this.authService.authInfo.token;
     this.apiService.update(this.api_schema, data);
   }
 
-  delete(data = {}) {
+  delete(data: any = {}) {
+    data.token = this.authService.authInfo.token;
     this.apiService.delete(this.api_schema, data);
   }
 }
