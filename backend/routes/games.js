@@ -23,26 +23,26 @@ router.get('/:game', (req, res, next) => {
   });
 })
 
-router.post('/:game', (req, res, next) => {
+router.post('', (req, res, next) => {
   res.contentType("application/json");
   console.log('UPDATE: game by game: ' + req.params.game);
-  game(req.params);
+  Game(req.body);
 })
 
-router.put('/:game', (req, res, next) => {
+router.put('', (req, res, next) => {
   res.contentType("application/json");
-  console.log('UPDATE: game by : ' + req.params.game);
+  console.log('UPDATE: game by : ' + req.body.game);
 
   game.update({game: req.params.game}, (err, game) => {
     console.log(`Updated ${game.title} from games collection`);
   });
 })
 
-router.delete('/:game', (req, res, next) => {
+router.delete('', (req, res, next) => {
   res.contentType("application/json");
-  console.log('UPDATE: game by game: ' + req.params.game);
+  console.log('UPDATE: game by game: ' + req.body.game);
 
-  game.findOneAndRemove({game: req.params.game}, (err, game) => {
+  game.findOneAndRemove({game: req.body.game}, (err, game) => {
     console.log(`Deleted ${game.title} from games collection`);
   });
 });
