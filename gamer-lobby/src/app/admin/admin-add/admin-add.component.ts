@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../services/game.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-add',
@@ -12,9 +13,17 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class AdminAddComponent implements OnInit {
 
-  constructor(private gameService: GameService, private router: Router) { }
+  constructor(private authService: AuthService,
+    private gameService: GameService, 
+    private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    if (this.authService.authenticated()) {
+      // do nothing
+    } else {
+      this.router.navigateByUrl("/users");
+    }
+  }
 
   add(): void {
     this.router.navigateByUrl('/admin');

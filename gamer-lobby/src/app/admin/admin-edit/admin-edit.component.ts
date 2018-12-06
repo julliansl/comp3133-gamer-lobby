@@ -3,6 +3,7 @@ import { User } from '../../models/user';
 import { GameService } from '../../services/game.service';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-edit',
@@ -15,18 +16,23 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class AdminEditComponent implements OnInit {
   user: User = new User();
 
-  constructor(private gameService: GameService, 
+  constructor(private authService: AuthService, 
     private userService: UserService, 
+    private gameService: GameService,
     private router: Router, 
     private route: ActivatedRoute) { 
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      setTimeout(() => {
-        this.user = this.userService.getUser(params.username);
-      }, 100);
-    });
+    if (this.authService.authenticated()) {
+      this.route.params.subscribe(params => {
+        setTimeout(() => {
+          this.user = this.userService.getUser(params.username);
+        }, 100);
+      });
+    } else {
+      this.router.navigateByUrl("/users");
+    }
   }
 
   update(): void {

@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
 import { GameService } from '../../services/game.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -22,20 +23,25 @@ export class AdminComponent implements OnInit {
   filteredUsers: User[];
   filteredGames: Game[];
 
-  constructor(private userService: UserService, 
+  constructor(private authService: AuthService,
+    private userService: UserService, 
     private gameService: GameService, 
     private activatedRoute: ActivatedRoute, 
     private router: Router) {
   }
 
   ngOnInit() {
-    this.users$ = this.activatedRoute.paramMap.pipe(switchMap(params => {
-      this.selectedUser = params.get('username');
-      return of(this.userService.users);
-    }));
+    if (this.authService.authenticated()) {
+      this.users$ = this.activatedRoute.paramMap.pipe(switchMap(params => {
+        this.selectedUser = params.get('username');
+        return of(this.userService.users);
+      }));
 
-    this.assignUsers();
-    this.assignGames();
+      this.assignUsers();
+      this.assignGames();
+    } else {
+      this.router.navigateByUrl("/users");
+    }
   }
 
   add() {
