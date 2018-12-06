@@ -14,7 +14,7 @@ router.post('', (req, res, next) => {
     } else if (account.password === req.body.password) {
       authInfo = JSON.parse(JSON.stringify(account));
       delete authInfo.password;
-      authInfo.token = Buffer.from(`authenticated#${account}`).toString('base64');
+      authInfo.token = Buffer.from(`authenticated#${JSON.stringify(account)}`).toString('base64');
 
       res.send(JSON.stringify(authInfo));
     }
