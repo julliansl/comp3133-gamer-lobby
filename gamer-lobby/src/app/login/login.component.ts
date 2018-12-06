@@ -14,7 +14,10 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (this.authService.authenticated())
+      this.router.navigateByUrl("/users");
+  }
 
   login(form: NgForm) {
     let values = form.value;
