@@ -48,6 +48,16 @@ export class AdminComponent implements OnInit {
     this.router.navigateByUrl('/admin/add');
   }
 
+  delete(user: User) {
+    this.filteredUsers = this.filteredUsers.filter((item) => {
+      if (item == user) {
+        this.userService.delete(user);
+        return false;
+      }
+      return true;
+    });
+  }
+
   assignUsers() {
     this.filteredUsers = this.userService.users;
   }
