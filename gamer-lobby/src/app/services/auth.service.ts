@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { AuthenticatedUser } from '../models/authenticated-user';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 
 @Injectable({
@@ -8,7 +9,19 @@ import { AuthenticatedUser } from '../models/authenticated-user';
 })
 export class AuthService {
   authInfo: AuthenticatedUser = null;
-  authenticated: boolean = false;
+  userAuthenticated: boolean = true;
 
   constructor(private apiService: ApiService) { }
+
+  authenticated(): boolean {
+    return this.userAuthenticated;
+  }
+
+  login(username: string, password: string) {
+    
+  }
+
+  logout() {
+
+  }
 }
