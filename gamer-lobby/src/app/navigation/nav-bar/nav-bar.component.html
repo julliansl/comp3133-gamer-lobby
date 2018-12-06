@@ -2,9 +2,10 @@
     <div class="navbar-inner">
         <div class="navbar-section left">
             <a class="nav-link" [routerLink]="['/invite']">Users</a>
+            <a class="nav-link" *ngIf="authService.authenticated()" [routerLink]="['/admin']">Admin</a>
         </div>
         <div class="navbar-section right">
-            <a class="nav-link" *ngIf='!authService.authenticated()' routerLink="/login">Login</a>
+            <a class="nav-link" *ngIf='!location.path().includes("login") && !authService.authenticated()' [routerLink]="['/login']">Login</a>
             <a class="nav-link" *ngIf="authService.authenticated()" (click)="authService.logout()">Logout</a>
         </div>
     </div>
