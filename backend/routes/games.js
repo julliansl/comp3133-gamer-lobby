@@ -78,11 +78,14 @@ router.put('', (req, res, next) => {
         res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
       } else {
         let values = req.body;
-        if (values && Object.keys(values).length > 0 && values.username) {
+        if (values && Object.keys(values).length > 0 && values._id) {
           console.log('UPDATE: Game by id: ' + values._id);
 
-          User.findByIdAndUpdate(values._id, (err, user) => {
-            console.log(`Updated ${user.username} from Games collection`);
+          Game.findByIdAndUpdate(values._id, (err, game) => {
+            if (game == null)
+              res.send(JSON.stringify({ message: "Invalid UPDATE Query for Game" }));
+            else
+              console.log(`Updated ${game.title} from Games collection`);
           });
         } else {
           res.send(JSON.stringify({ message: "Invalid UPDATE Query for Game" }));
@@ -107,8 +110,8 @@ router.delete('', (req, res, next) => {
         res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
       } else {
         let values = req.body;
-        if (values && Object.keys(values).length > 0 && values.username) {
-          console.log('DELETE: User by username' + values.username);
+        if (values && Object.keys(values).length > 0 && values._id) {
+          console.log('DELETE: User by username' + values._id);
           console.log(values);
 
           User.findByIdAndDelete(values._id, (err) => {

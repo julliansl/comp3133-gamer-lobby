@@ -74,11 +74,14 @@ router.put('', (req, res, next) => {
         res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
       } else {
         let values = req.body;
-        if (values && Object.keys(values).length > 0 && values.username) {
+        if (values && Object.keys(values).length > 0 && values._id) {
           console.log('UPDATE: User by id: ' + values._id);
 
           User.findByIdAndUpdate(values._id, (err, user) => {
-            console.log(`Updated ${user.username} from Users collection`);
+            if (user == null)
+              res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
+            else
+              console.log(`Updated ${user.username} from Users collection`);
           });
         } else {
           res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
@@ -102,7 +105,7 @@ router.delete('', (req, res, next) => {
         res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
       } else {
         let values = req.body;
-        if (values && Object.keys(values).length > 0 && values.username) {
+        if (values && Object.keys(values).length > 0 && values._id) {
           console.log('DELETE: User by id:' + values._id);
           console.log(values);
 
