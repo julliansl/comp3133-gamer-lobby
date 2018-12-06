@@ -16,16 +16,10 @@ export class AuthService {
   constructor(private apiService: ApiService,
     private router: Router) { }
 
-  authenticated(): boolean {
-    return this.authInfo !== null;
-  }
+  authenticated(): boolean { return this.authInfo != null; }
 
-  login(form: NgForm) {//username: string, password: string) {
-    console.log(JSON.stringify(form.value));
-    //this.authenticateUser({ username: username, password: password });
-    if (this.authInfo !== null) {
-      this.router.navigateByUrl("/admin");
-    }
+  login(username: string, password: string) {
+    this.authenticateUser({ username: username, password: password });
   }
 
   logout() {
@@ -36,8 +30,16 @@ export class AuthService {
   }
 
   authenticateUser(userInfo) {
-    this.apiService.post(this.api_schema, userInfo).subscribe((response) =>{
-      this.authInfo = Object.assign(new AuthenticatedUser(), response)
+    this.apiService.post(this.api_schema, userInfo).subscribe((response) => {
+      if (response.json() && response.json()['username']) {
+        this.authInfo = Object.assign(new AuthenticatedUser(), response.json());
+        if (this.authInfo != null) {
+          this.router.navigateByUrl("/admin");
+          console.log(`Authentication: User authenticated as ${this.authInfo.username}`);
+        }
+      } else {
+        console.log(`Authentication: Invalid Username or Password`);
+      }
     });
   }
 }
