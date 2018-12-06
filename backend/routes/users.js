@@ -26,7 +26,19 @@ router.get('/:username', (req, res, next) => {
 router.post('', (req, res, next) => {
   res.contentType("application/json");
   console.log('UPDATE: User by username: ' + req.body.username);
-  User(req.body);
+  let values = req.body;
+  if (values && Object.keys(values).length > 0) {
+    let user = User(values);
+    user.save((err, doc) => {
+      if (err)
+        throw err;
+
+      console.log(`Created new user: ${values.username}`);
+      res.send(JSON.stringify(doc));
+    });
+  } else {
+    res.send(JSON.stringify({ message: "Invalid CREATE Query for User" }));
+  }
 })
 
 router.put('', (req, res, next) => {

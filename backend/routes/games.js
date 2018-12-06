@@ -1,5 +1,6 @@
 const express = require("express");
 const Game = require('../models/game');
+const Account = require('../models/account');
 
 const router = express.Router();
 
@@ -25,8 +26,20 @@ router.get('/:game', (req, res, next) => {
 
 router.post('', (req, res, next) => {
   res.contentType("application/json");
-  console.log('UPDATE: game by game: ' + req.params.game);
-  Game(req.body);
+  console.log('UPDATE: game by game: ' + req.body.game);
+  let values = req.body;
+  if (values && Object.keys(values).length > 0) {
+    let game = Game(values);
+    game.save((err, doc) => {
+      if (err)
+        throw err;
+
+      console.log(`Created new game: ${values.game}`);
+      res.send(JSON.stringify(doc));
+    });
+  } else {
+    res.send(JSON.stringify({ message: "Invalid CREATE Query for Game" }));
+  }
 })
 
 router.put('', (req, res, next) => {
