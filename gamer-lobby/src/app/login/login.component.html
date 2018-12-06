@@ -1,13 +1,13 @@
-<form (submit)="authService.login(loginForm)" #loginForm="ngForm" novalidate>
+<form (submit)="login(loginForm)" #loginForm="ngForm" novalidate>
   <h2>Admin Login</h2>
   <div class="error" 
-    [hidden]="username.valid || username.pristine">
+    [hidden]="username.valid || username.pristine || password.valid || password.pristine">
     Invalid Username or Password
   </div>
   <label for="username">Login:</label>
-    <input type="text" id="username" name="username" ngModel required>
+    <input #username="ngModel" type="text" id="username" name="username" ngModel required>
   <label for="password">Password:</label>
-    <input type="password" id="password" name="password" ngModel required>
+    <input #password="ngModel" type="password" id="password" name="password" ngModel required>
   <button type="submit">Login</button>
   <button (click)="cancel()">Cancel</button>
 </form>
