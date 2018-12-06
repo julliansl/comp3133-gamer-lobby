@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Game } from '../../models/game';
-import { ApiService } from '../../services/api.service';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
@@ -22,8 +21,12 @@ export class AdminComponent implements OnInit {
 
   filteredUsers: User[];
   filteredGames: Game[];
-  
-  constructor(private apiService: ApiService, private userService: UserService, private gameService: GameService, private activatedRoute: ActivatedRoute, private router: Router) { }
+
+  constructor(private userService: UserService, 
+    private gameService: GameService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router) {
+  }
 
   ngOnInit() {
     this.users$ = this.activatedRoute.paramMap.pipe(switchMap(params => {
@@ -35,19 +38,15 @@ export class AdminComponent implements OnInit {
     this.assignGames();
   }
 
-  add(){
+  add() {
     this.router.navigateByUrl('/admin/add');
-  }
-
-  logout(){
-    this.router.navigateByUrl('/users');
   }
 
   assignUsers() {
     this.filteredUsers = this.userService.users;
   }
 
-  assignGames(){
+  assignGames() {
     this.filteredGames = this.gameService.games;
   }
 
@@ -58,7 +57,7 @@ export class AdminComponent implements OnInit {
     }
 
     const regex = new RegExp(value, 'i');
-    for (let key of Object.keys(this)){
+    for (let key of Object.keys(this)) {
       if (key === "filteredUsers" || key === "filteredGames") {
         let serviceName = key.toLowerCase().includes("user") ? "user" : "game";
         this[key] = this[`${serviceName}Service`][`${serviceName}s`].filter((item) => {
