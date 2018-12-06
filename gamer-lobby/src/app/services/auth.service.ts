@@ -4,6 +4,7 @@ import { AuthenticatedUser } from '../models/authenticated-user';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Http } from '@angular/http';
 
 
 @Injectable({
@@ -11,9 +12,14 @@ import { NgForm } from '@angular/forms';
 })
 export class AuthService {
   authInfo: AuthenticatedUser = null;
+  private api_url = "http://localhost:3000/api/";
   private api_schema = "auth";
+  private api_operations = {
+    create: "/create",
+    delete: "/delete"
+  };
 
-  constructor(private apiService: ApiService,
+  constructor(private http: Http,
     private router: Router) { }
 
   authenticated(): boolean { return this.authInfo != null; }
@@ -30,7 +36,7 @@ export class AuthService {
   }
 
   authenticateUser(userInfo) {
-    this.apiService.post(this.api_schema, userInfo).subscribe((response) => {
+    this.http.post(`${this.api_url}${this.api_schema}`, userInfo).subscribe((response) => {
       if (response.json() && response.json()['username']) {
         this.authInfo = Object.assign(new AuthenticatedUser(), response.json());
         if (this.authInfo != null) {
