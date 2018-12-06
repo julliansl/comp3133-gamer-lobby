@@ -16,8 +16,8 @@
     <td>{{user.game}}</td>
     <td>{{user.status}}</td>
     <td class="options">
-      <button *ngIf='user.status.toLowerCase() != "lobby"' disabled>Invite</button>
-      <button *ngIf='user.status.toLowerCase() == "lobby"' [routerLink]="['/invite/',user.username]">Invite</button>
+      <button *ngIf='user.status.toLowerCase() != "online"' disabled>Invite</button>
+      <button *ngIf='user.status.toLowerCase() == "online"' [routerLink]="['/invite/',user.username]">Invite</button>
     </td>
   </tr>
 </table>
