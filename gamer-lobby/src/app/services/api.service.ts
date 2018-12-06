@@ -18,6 +18,10 @@ export class ApiService {
     return this.http.get(`${this.api_url}${api_schema}`)
   }
 
+  post(api_schema: String, data = {}): Observable<any> {
+    return this.http.post(`${this.api_url}${api_schema}`, JSON.stringify(data));
+  }
+
   create(api_schema: String, data = {}) {
     this.http.post(`${this.api_url}${api_schema}`, JSON.stringify(data))
       .subscribe(() => {
