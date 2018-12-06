@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { AuthService } from '../services/auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  login() {
-    this.router.navigateByUrl('/admin');
+  login(form: NgForm) {
+    let values = form.value;
+    if (values.username && values.password)
+      this.authService.login(values.username, values.password);
+    else {
+      console.log("Authnetication: Invalid Username or Password");
+    }
   }
 
   cancel() {
