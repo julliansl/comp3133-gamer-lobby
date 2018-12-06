@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   host: {
-    class: 'login content-block padding-25 center-absolute'
+    class: 'login form content-block padding-25 center-absolute'
   },
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  constructor(private router: Router) { }
+  ngOnInit() { }
 
-  ngOnInit() {
-  }
-
-  login(){
+  login() {
     this.router.navigateByUrl('/admin');
   }
 
-  cancel(){
+  cancel() {
     this.router.navigateByUrl('users');
   }
 }
