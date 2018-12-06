@@ -1,4 +1,4 @@
-<form #addForm="ngForm" novalidate>
+<form (submit)="add(ngForm)" #addForm="ngForm" novalidate>
     <h2>Create/Add User</h2>
     <label for="username">Username:</label> 
         <input id="username" type="text" name="username" #username="ngModel" ngModel required>
@@ -25,6 +25,6 @@
         <option>In Game</option>
         <option>Online</option>
     </select>
-    <button [disabled]="!addForm.form.valid" (click)="add()" [disabled]>Add</button>
+    <button type="submit" [disabled]="!addForm.form.valid" [disabled]>Add</button>
     <button (click)="cancel()">Cancel</button>
 </form>
