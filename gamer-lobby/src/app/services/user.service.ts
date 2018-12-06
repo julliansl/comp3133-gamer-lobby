@@ -42,6 +42,9 @@ export class UserService {
           let userObj = Object.assign(new User(), data[user]);
           this.users.push(userObj);
         }
+        this.users = this.users.sort((a, b): number => {
+          return a['status'].localeCompare(b['status']);
+        });
       });
   }
 
