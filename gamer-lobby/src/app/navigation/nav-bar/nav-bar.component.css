@@ -88,6 +88,7 @@ Nav Section Styling
 Nav Link Styling
 *********************/
 .nav-link {
+  cursor: pointer;
   display: inline-block;
   padding: 0 10px;
 

@@ -132,7 +132,8 @@ a:hover {
   color: rgb(121, 141, 231);
 }
 
-.no-select {
+.no-select,
+.nav-link {
   user-select: none;
 }
 
