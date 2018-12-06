@@ -196,7 +196,7 @@ input[type=button]:focus, button:focus {
 }
 
 input[type=button]:active, button:active {
-  background: rgb(252,252,252);
+  background: rgb(240,240,240);
 }
 
 * + input, * + button {
@@ -233,42 +233,6 @@ input[disabled], button[disabled] {
 
 
 /******************
-  Login Styles
-*******************/
-.login.content-block {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-content: flex-start;
-  align-items: flex-start;
-  
-  min-height: 225px; max-height: 225px;
-  min-width: 400px; max-width: 400px;
-}
-
-.login > h2,
-.form > form > h2 {
-  position: absolute;
-  top: -40px; left: 15px;
-}
-
-.login > label,
-.form > form > label {
-  text-align: right;
-  flex-basis: calc(30% - 12.5px);
-}
-
-.login > label + *,
-.form > form > label + * {
-  flex-basis: calc(70% - 12.5px);
-}
-
-.login > button,
-.form > form > button {
-  flex-basis: 32.5%;
-}
-
-/******************
   Form Styles
 *******************/
 .form.content-block {
@@ -279,6 +243,12 @@ input[disabled], button[disabled] {
   min-width: 600px;
 }
 
+.login.form.content-block {
+  flex-basis: 320px;
+  min-width: 320px; max-width: 400px;
+  min-height: 225px;
+}
+
 .form > form {
   display: flex;
   flex-wrap: wrap;
@@ -286,4 +256,44 @@ input[disabled], button[disabled] {
   align-content: flex-start;
   align-items: flex-start;
   min-width: 100%; max-width: 100%;
+}
+
+.form > form > h2 {
+  position: absolute;
+  top: -40px; left: 15px;
+}
+
+.form > form > .error {
+  flex-basis: 100%;
+  min-width: 100%;
+  max-width: 100%;
+
+  text-align: center;
+  
+}
+
+.error {
+  padding: 5px;
+
+  background: rgb(255,200,200);
+  border: 1px solid rgb(255,140,140);
+
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.form > form > label {
+  text-align: right;
+  flex-basis: calc(30% - 12.5px);
+}
+
+.form > form > label + * {
+  flex-basis: calc(70% - 12.5px);
+}
+
+.form > form > button {
+  flex-basis: 32.5%;
 }
