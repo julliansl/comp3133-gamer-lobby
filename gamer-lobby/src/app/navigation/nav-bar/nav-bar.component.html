@@ -4,7 +4,8 @@
             <a class="nav-link" [routerLink]="['/invite']">Users</a>
         </div>
         <div class="navbar-section right">
-            <a class="nav-link" *ngIf='!authService.authneticated()' routerLink="/login">Login</a>
+            <a class="nav-link" *ngIf='!authService.authenticated()' routerLink="/login">Login</a>
+            <a class="nav-link" *ngIf="authService.authenticated()" (click)="authService.logout()">Logout</a>
         </div>
     </div>
 </div>
