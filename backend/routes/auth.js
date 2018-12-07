@@ -18,7 +18,6 @@ router.post('', (req, res, next) => {
 
       payload = { "_id": account._id }
       authInfo.token = Auth.generateToken(payload);
-      console.log(authInfo.token);
       res.send(JSON.stringify(authInfo));
     }
   });
