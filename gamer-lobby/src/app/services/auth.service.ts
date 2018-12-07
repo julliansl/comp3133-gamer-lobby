@@ -31,7 +31,7 @@ export class AuthService {
   logout() {
     this.authInfo = null;
     if (!this.authInfo) {
-      this.router.navigateByUrl("/users");
+      this.router.navigateByUrl("/login");
     }
   }
 
