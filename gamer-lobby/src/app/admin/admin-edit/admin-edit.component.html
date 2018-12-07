@@ -2,7 +2,7 @@
     <h2>Update User</h2>
     <label for="username">Username:</label> 
         <input id="username" type="text" name="username" [(ngModel)]="user.username" #username="ngModel" ngModel required>
-        <div [hidden]="username.valid || username.pristine">Username required</div>
+        <div class="error" [hidden]="username.valid || username.pristine">Username Required</div>
     <label for="level">Level:</label>
     <select id="level" name="level" [(ngModel)]="user.level" #level="ngModel" ngModel required>
         <option value="{{user.level}}" disabled selected>{{user.level}}</option>
@@ -10,10 +10,10 @@
     </select> 
     <label for="mode">Mode:</label>
         <input id="mode" type="text" name="mode" [(ngModel)]="user.mode" #mode="ngModel" ngModel required><br>
-        <div [hidden]="mode.valid || mode.pristine">Mode required</div>
+        <div class="error" [hidden]="mode.valid || mode.pristine">Mode Required</div>
     <label for="time">Time:</label>
         <input id="time" type="text" name="time" [(ngModel)]="user.time" #time="ngModel" ngModel required><br>
-        <div [hidden]="time.valid || time.pristine">Time required</div>
+        <div class="error" [hidden]="time.valid || time.pristine">Time Required</div>
     <label>Recently Played:</label>
     <select name="game" [(ngModel)]="user.game" #game="ngModel" ngModel required>
         <option value="" disabled selected>- Select a game -</option>
