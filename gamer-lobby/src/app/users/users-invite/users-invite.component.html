@@ -1,4 +1,4 @@
-<form #inviteForm="ngForm" class="no-select">
+<form (submit)="invite(inviteForm)" #inviteForm="ngForm" class="no-select">
     <h2>Friend Invitation</h2>
     <label>Username:</label>
         <div class="info">{{user.username}}</div>
@@ -15,6 +15,6 @@
         <option value="" disabled selected>- Select a game -</option>
         <option *ngFor="let game of gameService.games" value="{{game.title}}">{{game.title}}</option>
     </select>
-    <button [disabled]="!inviteForm.form.valid" (click)="invite()">Invite</button>
+    <button [disabled]="!inviteForm.form.valid">Invite</button>
     <button (click)="cancel()">Cancel</button>
 </form>
