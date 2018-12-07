@@ -38,7 +38,7 @@ router.post('', (req, res, next) => {
   res.contentType("application/json");
   let values = req.body;
   if (values) {
-    if (Auth.verifyToken(values.token)) {
+    if (Auth.verify(values.token)) {
       if (values && Object.keys(values).length > 0 && values.title) {
         
         console.log('CREATE: Game by id: ' + values.title);
@@ -68,7 +68,7 @@ router.put('', (req, res, next) => {
   res.contentType("application/json");
   let values = req.body;
   if (values) {
-    if (Auth.verifyToken(values.token)) {
+    if (Auth.verify(values.token)) {
       if (values && Object.keys(values).length > 0 && values._id) {
         console.log('UPDATE: Game by id: ' + values._id);
         
@@ -99,7 +99,7 @@ router.delete('', (req, res, next) => {
   res.contentType("application/json");
   let values = req.body;
   if (values) {
-    if (Auth.verifyToken(values.token)) {
+    if (Auth.verify(values.token)) {
       if (values && Object.keys(values).length > 0 && values._id) {
     
         console.log('DELETE: User by username' + values._id);
