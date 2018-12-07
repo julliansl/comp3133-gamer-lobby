@@ -14,3 +14,10 @@ In order to setup this project make sure to run these commands:
 2. Once in the project's root folder there are two command options:
   * Run `npm run setup` if all global dependencies are installed
   * Run `npm run setup:env` if @angular/cli, and nodemon aren't installed globally
+
+## Running the Server
+> Running the server is as easy as running `npm run start` in the root folder
+>> If this method fails, I suggest running the servers manually. Here's how:
+>> Make sure to run these commands in a terminal/command line `cd`'d to the project's root folder:
+>> 1. nodemon ./backend/server.js
+>> 2. `cd` into `gamer-lobby` then run `ng serve --open`
