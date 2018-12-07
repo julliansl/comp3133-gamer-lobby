@@ -31,6 +31,9 @@ export class GameService {
           let userObj = Object.assign(new Game(), data[game]);
           this.games.push(userObj);
         }
+        this.games = this.games.sort((a, b): number => {
+          return a['title'].localeCompare(b['title']);
+        });
       });
   }
 
@@ -38,15 +41,15 @@ export class GameService {
     return this.apiService.get(this.api_schema);
   }
 
-  create(data: any = {}) {
-    this.apiService.create(this.api_schema, data);
+  create(data: any = {}): any {
+    return this.apiService.create(this.api_schema, data);
   }
 
-  update(data: any = {}) {
-    this.apiService.update(this.api_schema, data);
+  update(data: any = {}): any {
+    return this.apiService.update(this.api_schema, data);
   }
 
-  delete(data: any = {}) {
-    this.apiService.delete(this.api_schema, data);
+  delete(data: any = {}): any {
+    return this.apiService.delete(this.api_schema, data);
   }
 }

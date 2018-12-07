@@ -53,14 +53,14 @@ export class UserService {
   }
 
   create(data: any = {}) {
-    this.apiService.create(this.api_schema, data);
+    return this.apiService.create(this.api_schema, data);
   }
 
   update(data: any = {}) {
-    this.apiService.update(this.api_schema, data);
+    return this.apiService.update(this.api_schema, data);
   }
 
   delete(data: any = {}) {
-    this.apiService.delete(this.api_schema, data);
+    return this.apiService.delete(this.api_schema, data);
   }
 }
