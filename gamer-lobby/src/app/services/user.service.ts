@@ -52,15 +52,15 @@ export class UserService {
     return this.apiService.get(this.api_schema);
   }
 
-  create(data: any = {}) {
-    return this.apiService.create(this.api_schema, data);
+  create(data: any = {}, auth: boolean = true) {
+    return this.apiService.create(this.api_schema, data, auth);
   }
 
-  update(data: any = {}) {
-    return this.apiService.update(this.api_schema, data);
+  update(data: any = {}, auth: boolean = true) {
+    return this.apiService.update(this.api_schema, data, auth);
   }
 
-  delete(data: any = {}) {
-    return this.apiService.delete(this.api_schema, data);
+  delete(data: any = {}, auth: boolean = true) {
+    return this.apiService.delete(this.api_schema, data, auth);
   }
 }

@@ -26,9 +26,10 @@ export class ApiService {
     return this.http.post(`${this.api_url}${api_schema}`, urlSearchParams);
   }
 
-  create(api_schema: String, data: any = {}): any {
-    if (this.authService.authenticated()) {
-      data.token = this.authService.authInfo.token;
+  create(api_schema: String, data: any = {}, auth: boolean = true): any {
+    if (auth === false || this.authService.authenticated()) {
+      if (auth === true)
+        data.token = this.authService.authInfo.token;
       let urlSearchParams = new URLSearchParams();
       for (let key in data)
         urlSearchParams.append(key, data[key]);
@@ -38,9 +39,10 @@ export class ApiService {
     }
   }
 
-  update(api_schema: String, data: any = {}): any {
-    if (this.authService.authenticated()) {
-      data.token = this.authService.authInfo.token;
+  update(api_schema: String, data: any = {}, auth: boolean = true): any {
+    if (auth === false || this.authService.authenticated()) {
+      if (auth === true)
+        data.token = this.authService.authInfo.token;
       let urlSearchParams = new URLSearchParams();
       for (let key in data)
         urlSearchParams.append(key, data[key]);
@@ -50,9 +52,10 @@ export class ApiService {
     }
   }
 
-  delete(api_schema: String, data: any = {}): any {
-    if (this.authService.authenticated()) {
-      data.token = this.authService.authInfo.token;
+  delete(api_schema: String, data: any = {}, auth: boolean = true): any {
+    if (auth === false || this.authService.authenticated()) {
+      if (auth === true)
+        data.token = this.authService.authInfo.token;
       return this.http.delete(`${this.api_url}${api_schema}`, new RequestOptions({ body: data }))
         .subscribe(() => {
           console.log(`Deleted data in ${api_schema} collection.`);
