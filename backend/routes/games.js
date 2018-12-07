@@ -1,6 +1,6 @@
 const express = require("express");
 const Game = require('../models/game');
-const Account = require('../models/account');
+const { hash } = require('../utils');
 
 const router = express.Router();
 
@@ -37,43 +37,31 @@ router.get('/:game', (req, res, next) => {
 router.post('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
-    // Decode Token
-    let token = req.body.token;
-    let decodedToken = Buffer.from(token, 'base64').toString();
-    // Split secret from Account Information
-    decodedToken = decodedToken.split("#");
+    let token = req.body.token.split(".");
+    
+    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
+      let values = req.body;
+      if (values && Object.keys(values).length > 0 && values.title) {
+        
+        console.log('CREATE: Game by id: ' + values.title);
+        
+        let game = Game(values);
+        game.save((err, doc) => {
+          if (err)
+            throw err;
 
-    // Get Account Information from Token
-    let account = JSON.parse(decodedToken[decodedToken.length-1]);
-    Account.findOne(account, (err, account) => {
+          console.log(`Created new game: ${values.title}`);
+          res.send(JSON.stringify(doc));
+        });
 
-      if (account == null) {
-        res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
       } else {
-
-        let values = req.body;
-        if (values && Object.keys(values).length > 0 && values.title) {
-          
-          console.log('CREATE: Game by id: ' + values.title);
-          
-          let game = Game(values);
-          game.save((err, doc) => {
-            if (err)
-              throw err;
-
-            console.log(`Created new game: ${values.title}`);
-            res.send(JSON.stringify(doc));
-          });
-
-        } else {
-          res.send(JSON.stringify({ message: "Invalid CREATE Query for Game" }));
-        }
-
+        res.send(JSON.stringify({ message: "Invalid CREATE Query for Game" }));
       }
-
-    });
+    } else {
+      res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    }
   } else {
-    res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    res.send(JSON.stringify({ message: "Invalid Authorization, No token Given" }));
   }
 })
 
@@ -81,43 +69,32 @@ router.post('', (req, res, next) => {
 router.put('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
-    // Decode Token
-    let token = req.body.token;
-    let decodedToken = Buffer.from(token, 'base64').toString();
-    // Split secret from Account Information
-    decodedToken = decodedToken.split("#");
-
-    // Get Account Information from Token
-    let account = JSON.parse(decodedToken[decodedToken.length-1]);
-    Account.findOne(account, (err, account) => {
-
-      if (account == null) {
-        res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
-      } else {
+    let token = req.body.token.split(".");
+    
+    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
+      let values = req.body;
+      if (values && Object.keys(values).length > 0 && values._id) {
+        console.log('UPDATE: Game by id: ' + values._id);
         
-        let values = req.body;
-        if (values && Object.keys(values).length > 0 && values._id) {
-          console.log('UPDATE: Game by id: ' + values._id);
-          
-          Game.findByIdAndUpdate(values._id, values, (err, game) => {
-            if (err) throw err;
+        Game.findByIdAndUpdate(values._id, values, (err, game) => {
+          if (err) throw err;
 
-            if (game == null)
-              res.send(JSON.stringify({ message: "Invalid UPDATE Query for Game" }));
-            else {
-              console.log(`Updated ${game.title} from Games collection`);
-              res.send(JSON.stringify(game));
-            }
-          });
+          if (game == null)
+            res.send(JSON.stringify({ message: "Invalid UPDATE Query for Game" }));
+          else {
+            console.log(`Updated ${game.title} from Games collection`);
+            res.send(JSON.stringify(game));
+          }
+        });
 
-        } else {
-          res.send(JSON.stringify({ message: "Invalid UPDATE Query for Game" }));
-        }
+      } else {
+        res.send(JSON.stringify({ message: "Invalid UPDATE Query for Game" }));
       }
-
-    });
+    } else {
+      res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    }
   } else {
-    res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    res.send(JSON.stringify({ message: "Invalid Authorization, No token Given" }));
   }
 })
 
@@ -125,36 +102,26 @@ router.put('', (req, res, next) => {
 router.delete('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
-    // Decode Token
-    let token = req.body.token;
-    let decodedToken = Buffer.from(token, 'base64').toString();
-    // Split secret from Account Information
-    decodedToken = decodedToken.split("#");
+    let token = req.body.token.split(".");
+    
+    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
+      let values = req.body;
+      if (values && Object.keys(values).length > 0 && values._id) {
+    
+        console.log('DELETE: User by username' + values._id);
 
-    // Get Account Information from Token
-    let account = JSON.parse(decodedToken[decodedToken.length-1]);
-    Account.findOne(account, (err, account) => {
-      
-      if (account == null) {
-        res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+        User.findByIdAndDelete(values._id, (err) => {
+          console.log(`Deleted ${values.title} from Games collection`);
+        });
+        
       } else {
-        let values = req.body;
-        if (values && Object.keys(values).length > 0 && values._id) {
-      
-          console.log('DELETE: User by username' + values._id);
-
-          User.findByIdAndDelete(values._id, (err) => {
-            console.log(`Deleted ${values.title} from Games collection`);
-          });
-          
-        } else {
-          res.send(JSON.stringify({ message: "Invalid DELETE Query for Games" }));
-        }
+        res.send(JSON.stringify({ message: "Invalid DELETE Query for Games" }));
       }
-      
-    });
+    } else {
+      res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    }
   } else {
-    res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    res.send(JSON.stringify({ message: "Invalid Authorization, No Token Given" }));
   }
 });
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const User = require('../models/user');
-const Account = require('../models/account');
+const { hash } = require('../utils');
 
 const router = express.Router();
 
@@ -27,7 +27,7 @@ router.get('/:username', (req, res, next) => {
       else
         res.send(JSON.stringify(user));
     });
-    
+
   } else {
     res.send(JSON.stringify({ message: "No user returned due to having no queries" }));
   }
@@ -36,116 +36,83 @@ router.get('/:username', (req, res, next) => {
 router.post('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
-    // Decode Token
-    let token = req.body.token;
-    let decodedToken = Buffer.from(token, 'base64').toString();
-    // Split secret from Account Information
-    decodedToken = decodedToken.split("#");
+    let token = req.body.token.split(".");
 
-    // Get Account Information from Token
-    let account = JSON.parse(decodedToken[decodedToken.length-1]);
-    Account.findOne(account, (err, account) => {
-      if (account == null) {
-        res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
+      let values = req.body;
+      if (values && Object.keys(values).length > 0 && values.username) {
+        console.log('CREATE: User: ' + values.username);
+        let user = User(values);
+        user.save((err, doc) => {
+          if (err)
+            throw err;
+
+          console.log(`Created new user: ${values.username}`);
+          res.send(JSON.stringify(doc));
+        });
       } else {
-        let values = req.body;
-        if (values && Object.keys(values).length > 0 && values.username) {
-          console.log('CREATE: User: ' + values.username);
-          let user = User(values);
-          user.save((err, doc) => {
-            if (err)
-              throw err;
-
-            console.log(`Created new user: ${values.username}`);
-            res.send(JSON.stringify(doc));
-          });
-        } else {
-          res.send(JSON.stringify({ message: "Invalid CREATE Query for User" }));
-        }
+        res.send(JSON.stringify({ message: "Invalid CREATE Query for User" }));
       }
-    });
+    } else {
+      res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    }
   } else {
-    res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    res.send(JSON.stringify({ message: "Invalid Authorization, No Token Given" }));
   }
 })
 
 router.put('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
-    // Decode Token
-    let token = req.body.token;
-    let decodedToken = Buffer.from(token, 'base64').toString();
-    // Split secret from Account Information
-    decodedToken = decodedToken.split("#");
+    let token = req.body.token.split(".");
 
-    // Get Account Information from Token
-    let account = JSON.parse(decodedToken[decodedToken.length-1]);
-    Account.findOne(account, (err, account) => {
+    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
+      let values = req.body;
+      if (values && Object.keys(values).length > 0 && values._id) {
+        console.log('UPDATE: User by id: ' + values._id);
 
-      if (account == null) {
-        res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+        User.findByIdAndUpdate(values._id, values, (err, user) => {
+          if (err) throw err;
+
+          if (user == null)
+            res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
+          else {
+            console.log(`Updated ${user.username} from Users collection`);
+            res.send(JSON.stringify(user));
+          }
+        });
       } else {
-
-        let values = req.body;
-        if (values && Object.keys(values).length > 0 && values._id) {
-
-          console.log('UPDATE: User by id: ' + values._id);
-
-          User.findByIdAndUpdate(values._id, values, (err, user) => {
-            if (err) throw err;
-
-            if (user == null)
-              res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
-            else {
-              console.log(`Updated ${user.username} from Users collection`);
-              res.send(JSON.stringify(user));
-            }
-          });
-
-        } else {
-          res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
-        }
+        res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
       }
-
-    });
-
+    } else {
+      res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    }
   } else {
-    res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    res.send(JSON.stringify({ message: "Invalid Authorization, No token Given" }));
   }
 })
 
 router.delete('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
-    // Decode Token
-    let token = req.body.token;
-    let decodedToken = Buffer.from(token, 'base64').toString();
-    // Split secret from Account Information
-    decodedToken = decodedToken.split("#");
+    let token = req.body.token.split(".");
+    
+    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
+      let values = req.body;
+      if (values && Object.keys(values).length > 0 && values._id) {
+        console.log('DELETE: User by id:' + values._id);
 
-    // Get Account Information from Token
-    let account = JSON.parse(decodedToken[decodedToken.length-1]);
-    Account.findOne(account, (err, account) => {
-
-      if (account == null) {
-        res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+        User.findByIdAndDelete(values._id, (err) => {
+          console.log(`Deleted ${values.username} from Users collection`);
+        });
       } else {
-        let values = req.body;
-        if (values && Object.keys(values).length > 0 && values._id) {
-          console.log('DELETE: User by id:' + values._id);
-
-          User.findByIdAndDelete(values._id, (err) => {
-            console.log(`Deleted ${values.username} from Users collection`);
-          });
-        } else {
-          res.send(JSON.stringify({ message: "Invalid DELETE Query for User" }));
-        }
+        res.send(JSON.stringify({ message: "Invalid DELETE Query for User" }));
       }
-
-    });
-
+    } else {
+      res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    }
   } else {
-    res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
+    res.send(JSON.stringify({ message: "Invalid Authorization, No Token Given" }));
   }
 });
 

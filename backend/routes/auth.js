@@ -1,5 +1,6 @@
 const express = require("express");
 const Account = require('../models/account');
+const { base64UrlEncode, hash } = require('../utils');
 
 const router = express.Router();
 
@@ -14,8 +15,16 @@ router.post('', (req, res, next) => {
     } else if (account.password === req.body.password) {
       authInfo = JSON.parse(JSON.stringify(account));
       delete authInfo.password;
-      authInfo.token = Buffer.from(`authenticated#${JSON.stringify(account)}`).toString('base64');
 
+      header = { "alg": "HS256", "typ": "JWT" }
+      payload = { "_id": account._id }
+      data = `${base64UrlEncode(JSON.stringify(header))}.${base64UrlEncode(JSON.stringify(payload))}`;
+      secret = "comp3123_assignment1";
+      hashedData = hash(data, secret);
+
+      jwt = `${data}.${hashedData}`;
+      authInfo.token = jwt;
+      console.log(jwt);
       res.send(JSON.stringify(authInfo));
     }
   });
