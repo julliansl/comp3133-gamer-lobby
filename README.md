@@ -1,4 +1,4 @@
-COMP3123 Assignment 1 - Gamer Lobby (with a Friends List edit)
+COMP3123 Assignment 1 - Gamer Lobby (Friends List Ver.)
 ======
 ## Initial Setup Guide
 ### Proper Setup
