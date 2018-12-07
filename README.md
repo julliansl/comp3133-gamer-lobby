@@ -22,3 +22,8 @@ In order to setup this project make sure to run these commands:
 >> 2. `cd` into `gamer-lobby` then run `ng serve --open`
 >> 
 >> **Note:** Make sure to run these commands in a terminal/command line `cd`'d into the project's root folder
+
+## Important Project Information
+### Admin Credentials
+### Username: admin
+### Password: admin
