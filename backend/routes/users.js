@@ -1,6 +1,6 @@
 const express = require("express");
 const User = require('../models/user');
-const { hash } = require('../utils');
+const { Auth } = require('../utils');
 
 const router = express.Router();
 
@@ -35,11 +35,9 @@ router.get('/:username', (req, res, next) => {
 
 router.post('', (req, res, next) => {
   res.contentType("application/json");
-  if (req.body.token) {
-    let token = req.body.token.split(".");
-
-    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
-      let values = req.body;
+  let values = req.body;
+  if (values) {
+    if (Auth.verifyToken(values.token)) {
       if (values && Object.keys(values).length > 0 && values.username) {
         console.log('CREATE: User: ' + values.username);
         let user = User(values);
@@ -63,14 +61,10 @@ router.post('', (req, res, next) => {
 
 router.put('', (req, res, next) => {
   res.contentType("application/json");
-  if (req.body.token || req.body.type) {
-    let token = null;
-    if (req.body.token)
-      token = req.body.token.split(".");
-
-    if ((token && token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) 
-        || (req.body.type && req.body.type === "invite")) {
-      let values = req.body;
+  let values = req.body;
+  if (values) {
+    if (Auth.verifyToken(values.token) 
+    || (values.type && values.type === "invite")) {
       if (values && Object.keys(values).length > 0 && values._id) {
         console.log('UPDATE: User by id: ' + values._id);
 
@@ -97,11 +91,9 @@ router.put('', (req, res, next) => {
 
 router.delete('', (req, res, next) => {
   res.contentType("application/json");
-  if (req.body.token) {
-    let token = req.body.token.split(".");
-    
-    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
-      let values = req.body;
+  let values = req.body;
+  if (values) {
+    if (Auth.verifyToken(values.token)) {
       if (values && Object.keys(values).length > 0 && values._id) {
         console.log('DELETE: User by id:' + values._id);
 

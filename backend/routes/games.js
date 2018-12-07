@@ -36,11 +36,9 @@ router.get('/:game', (req, res, next) => {
 // CREATE
 router.post('', (req, res, next) => {
   res.contentType("application/json");
-  if (req.body.token) {
-    let token = req.body.token.split(".");
-    
-    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
-      let values = req.body;
+  let values = req.body;
+  if (values) {
+    if (Auth.verifyToken(values.token)) {
       if (values && Object.keys(values).length > 0 && values.title) {
         
         console.log('CREATE: Game by id: ' + values.title);
@@ -68,11 +66,9 @@ router.post('', (req, res, next) => {
 // UPDATE
 router.put('', (req, res, next) => {
   res.contentType("application/json");
-  if (req.body.token) {
-    let token = req.body.token.split(".");
-    
-    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
-      let values = req.body;
+  let values = req.body;
+  if (values) {
+    if (Auth.verifyToken(values.token)) {
       if (values && Object.keys(values).length > 0 && values._id) {
         console.log('UPDATE: Game by id: ' + values._id);
         
@@ -101,11 +97,9 @@ router.put('', (req, res, next) => {
 // DELETE
 router.delete('', (req, res, next) => {
   res.contentType("application/json");
-  if (req.body.token) {
-    let token = req.body.token.split(".");
-    
-    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
-      let values = req.body;
+  let values = req.body;
+  if (values) {
+    if (Auth.verifyToken(values.token)) {
       if (values && Object.keys(values).length > 0 && values._id) {
     
         console.log('DELETE: User by username' + values._id);
