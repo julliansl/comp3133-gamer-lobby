@@ -1,5 +1,8 @@
 COMP3123 Assignment 1 - Gamer Lobby (Friends List Ver.)
 ======
+## Developers
+#### 100801047 - Jacky Phung
+#### 100998164 - Jullian Anthony Sy-Lucero
 ## Initial Setup Guide
 ### Proper Setup
 In order to setup this project make sure to run these commands:
