@@ -9,7 +9,7 @@ class Auth {
     this.secret_key = "comp3123_assignment1";
   }
 
-  verifyToken(token) {
+  verify(token) {
     if (token) {
       token = token.split(".");
       return (token && token[2] === this.hash(`${token[0]}.${token[1]}`, this.secret_key));
@@ -20,7 +20,7 @@ class Auth {
   generateToken(payload) {
     let data = `${this.base64(JSON.stringify(this.header))}.${this.base64(JSON.stringify(payload))}`;
     let hashedData = this.hash(data, this.secret_key);
-    return `${data},${hashedData}`;
+    return `${data}.${hashedData}`;
   }
 
   base64(string) {
