@@ -18,13 +18,16 @@ router.get('/:username', (req, res, next) => {
   res.contentType("application/json");
   if (req.params.username) {
     console.log('GET: game by game:' + req.params.username);
+    
     User.findOne({ username: req.params.username }, (err, user) => {
       if (err)  throw err;
+      
       if (user == null)
         res.send(JSON.stringify({ message: `The user "${req.params.username}" does not exist in the database` }));
       else
         res.send(JSON.stringify(user));
     });
+    
   } else {
     res.send(JSON.stringify({ message: "No user returned due to having no queries" }));
   }
@@ -33,9 +36,13 @@ router.get('/:username', (req, res, next) => {
 router.post('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
+    // Decode Token
     let token = req.body.token;
     let decodedToken = Buffer.from(token, 'base64').toString();
+    // Split secret from Account Information
     decodedToken = decodedToken.split("#");
+
+    // Get Account Information from Token
     let account = JSON.parse(decodedToken[decodedToken.length-1]);
     Account.findOne(account, (err, account) => {
       if (account == null) {
@@ -65,29 +72,43 @@ router.post('', (req, res, next) => {
 router.put('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
+    // Decode Token
     let token = req.body.token;
     let decodedToken = Buffer.from(token, 'base64').toString();
+    // Split secret from Account Information
     decodedToken = decodedToken.split("#");
+
+    // Get Account Information from Token
     let account = JSON.parse(decodedToken[decodedToken.length-1]);
     Account.findOne(account, (err, account) => {
+
       if (account == null) {
         res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
       } else {
+
         let values = req.body;
         if (values && Object.keys(values).length > 0 && values._id) {
+
           console.log('UPDATE: User by id: ' + values._id);
 
-          User.findByIdAndUpdate(values._id, (err, user) => {
+          User.findByIdAndUpdate(values._id, values, (err, user) => {
+            if (err) throw err;
+
             if (user == null)
               res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
-            else
+            else {
               console.log(`Updated ${user.username} from Users collection`);
+              res.send(JSON.stringify(user));
+            }
           });
+
         } else {
           res.send(JSON.stringify({ message: "Invalid UPDATE Query for User" }));
         }
       }
+
     });
+
   } else {
     res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
   }
@@ -96,18 +117,22 @@ router.put('', (req, res, next) => {
 router.delete('', (req, res, next) => {
   res.contentType("application/json");
   if (req.body.token) {
+    // Decode Token
     let token = req.body.token;
     let decodedToken = Buffer.from(token, 'base64').toString();
+    // Split secret from Account Information
     decodedToken = decodedToken.split("#");
+
+    // Get Account Information from Token
     let account = JSON.parse(decodedToken[decodedToken.length-1]);
     Account.findOne(account, (err, account) => {
+
       if (account == null) {
         res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
       } else {
         let values = req.body;
         if (values && Object.keys(values).length > 0 && values._id) {
           console.log('DELETE: User by id:' + values._id);
-          console.log(values);
 
           User.findByIdAndDelete(values._id, (err) => {
             console.log(`Deleted ${values.username} from Users collection`);
@@ -116,7 +141,9 @@ router.delete('', (req, res, next) => {
           res.send(JSON.stringify({ message: "Invalid DELETE Query for User" }));
         }
       }
+
     });
+
   } else {
     res.send(JSON.stringify({ message: "Invalid Authorization Token" }));
   }
