@@ -63,10 +63,13 @@ router.post('', (req, res, next) => {
 
 router.put('', (req, res, next) => {
   res.contentType("application/json");
-  if (req.body.token) {
-    let token = req.body.token.split(".");
+  if (req.body.token || req.body.type) {
+    let token = null;
+    if (req.body.token)
+      token = req.body.token.split(".");
 
-    if (token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) {
+    if ((token && token[2] === hash(`${token[0]}.${token[1]}`, "comp3123_assignment1")) 
+        || (req.body.type && req.body.type === "invite")) {
       let values = req.body;
       if (values && Object.keys(values).length > 0 && values._id) {
         console.log('UPDATE: User by id: ' + values._id);
