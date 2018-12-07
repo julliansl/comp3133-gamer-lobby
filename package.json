@@ -8,7 +8,7 @@
     "start:server": "nodemon ./backend/server.js",
     "start:client": "cd ./gamer-lobby && ng serve --open",
     "start:client-nb": "cd ./gamer-lobby && ng serve",
-    "setup": "node script/setup.js",
+    "setup": "npm i && node script/setup.js",
     "setup:env": "npm i & npm i @angular/cli -g & npm i nodemon -g & npm run setup"
   },
   "dependencies": {
